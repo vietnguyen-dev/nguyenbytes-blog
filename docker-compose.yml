@@ -7,11 +7,9 @@ services:
     ports:
       - "3000:80"
     environment:
-      - VITE_API_URLL=${VITE_API_URL}
+      - VITE_API_URL=${VITE_API_URL}
       - VITE_EMAIL_API=${VITE_EMAIL_API}
       # Adjust this based on your setup
-    volumes:
-      - ./react-app:/usr/src/app
     depends_on:
       - wordpress
       - db
@@ -27,6 +25,8 @@ services:
     environment:
       - EMAIL_USER=${EMAIL_USER}
       - EMAIL_PASS=${EMAIL_PASS}
+    networks:
+      - app-network
   wordpress:
     image: wordpress:latest
     ports:
@@ -35,7 +35,13 @@ services:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
       WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-      WORDPRESS_DB_NAME: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+    depends_on:
+      - db
+    networks:
+      - app-network
+    volumes:
+      - ./wordpress_data:/var/www/html
   db:
     image: mariadb:latest
     environment:
@@ -45,10 +51,13 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./db_data:/var/lib/mysql
+    networks:
+      - app-network
 
 volumes:
   wordpress:
   db_data:
+  wordpress_data:
 
 networks:
   app-network:
