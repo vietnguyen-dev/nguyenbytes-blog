@@ -1,0 +1,55 @@
+services:
+  # React App
+  app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URLL=${VITE_API_URL}
+      - VITE_EMAIL_API=${VITE_EMAIL_API}
+      # Adjust this based on your setup
+    volumes:
+      - ./react-app:/usr/src/app
+    depends_on:
+      - wordpress
+      - db
+      - email-api
+    networks:
+      - app-network
+  email-api:
+    build:
+      context: ./email-api
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_PASSWORD}
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./db_data:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge
