@@ -2,23 +2,51 @@ import { useState, useEffect } from "react";
 import Page from "./components/UI/Page";
 import Popular from "./components/UI/Popular";
 import ContactForm from "./components/UI/Contact";
-
 const APIURL = import.meta.env.VITE_API_URL;
-const BLOG = import.meta.env.VITE_BLOG;
+
+export interface iCategory {
+  id: number;
+  count: number;
+  description: string;
+  link: string;
+  name: string;
+  slug: string;
+  taxonomy: string;
+  parent: number;
+  meta: any[];
+  _links: {
+    self: { href: string }[];
+    collection: { href: string }[];
+  };
+}
 
 function App() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [perPage, setPerPage] = useState<number>(1);
+  const [loadMore, setLoadMore] = useState<boolean>(true);
 
   useEffect(() => {
-    const getBlogPost = async () => {
+    const getBlogPost = async (title: string) => {
+      const response = await fetch(`${APIURL}/categories`);
+      const catgegories = await response.json();
+      if (catgegories.length === 0) {
+        setBlogPosts([]);
+      }
+      const filtered = catgegories.filter(
+        (category: iCategory) => category.name === title
+      );
+      let id = filtered[0].id;
       const res = await fetch(
-        `${APIURL}/posts?categories=${BLOG}&per_page=${10 * perPage}`
+        `${APIURL}/posts?categories=${id}&per_page=${10 * perPage}`
       );
       const data = await res.json();
+      if (data.length <= 10) {
+        setLoadMore(false);
+      }
       setBlogPosts(data);
     };
-    getBlogPost();
+
+    getBlogPost("Blog Post");
   }, [perPage]);
 
   const shortenHTML = (content: string) => {
@@ -30,7 +58,9 @@ function App() {
     return shortened;
   };
 
-  const increasePerPage = () => setPerPage(perPage + 1);
+  const increasePerPage = () => {
+    setPerPage(perPage + 1);
+  };
 
   return (
     <Page>
@@ -55,14 +85,19 @@ function App() {
                   __html: shortenHTML(post.content.rendered),
                 }}
               />
-              <button className="btn btn-primary">
-                <a href={`${post.id}`}>Read More</a>
+              <button className="btn btn-secondary">
+                <a href={`/${post.id}`}>Load More</a>
               </button>
             </div>
           ))}
-          <button className="btn btn-secondary w-32" onClick={increasePerPage}>
-            Load More
-          </button>
+          {loadMore || (
+            <button
+              className="btn btn-secondary w-32"
+              onClick={increasePerPage}
+            >
+              Load More
+            </button>
+          )}
         </div>
         <Popular />
       </main>

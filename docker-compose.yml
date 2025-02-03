@@ -1,5 +1,4 @@
 services:
-  # React App
   app:
     build:
       context: ./frontend
@@ -16,6 +15,7 @@ services:
       - email-api
     networks:
       - app-network
+    restart: always
   email-api:
     build:
       context: ./email-api
@@ -27,6 +27,7 @@ services:
       - EMAIL_PASS=${EMAIL_PASS}
     networks:
       - app-network
+    restart: always
   wordpress:
     image: wordpress:latest
     ports:
@@ -42,6 +43,7 @@ services:
       - app-network
     volumes:
       - ./wordpress_data:/var/www/html
+    restart: always
   db:
     image: mariadb:latest
     environment:
@@ -53,6 +55,7 @@ services:
       - ./db_data:/var/lib/mysql
     networks:
       - app-network
+    restart: always
 
 volumes:
   wordpress:

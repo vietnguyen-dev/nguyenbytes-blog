@@ -2,23 +2,34 @@ import { useState, useEffect } from "react";
 import Page from "../UI/Page";
 import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";
+import { iCategory } from "../../App";
 const APIURL = import.meta.env.VITE_API_URL;
-const PROJECTS = import.meta.env.VITE_PROJECTS;
 
 const Projects = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [perPage, setPerPage] = useState<number>(1);
 
   useEffect(() => {
-    const getBlogPost = async () => {
+    const getBlogPost = async (title: string) => {
+      const response = await fetch(`${APIURL}/categories`);
+      const catgegories = await response.json();
+      if (catgegories.length === 0) {
+        setBlogPosts([]);
+      }
+      const filtered = catgegories.filter(
+        (category: iCategory) => category.name === title
+      );
+      let id = filtered[0].id;
       const res = await fetch(
-        `${APIURL}/posts?categories=${PROJECTS}&per_page=${10 * perPage}`
+        `${APIURL}/posts?categories=${id}&per_page=${10 * perPage}`
       );
       const data = await res.json();
       setBlogPosts(data);
     };
-    getBlogPost();
+    getBlogPost("Projects");
   }, [perPage]);
+
+  const increasePage = () => setPerPage(perPage + 1);
 
   return (
     <Page>
@@ -45,6 +56,9 @@ const Projects = () => {
             </div>
           );
         })}
+        <button className="btn btn-secondary" onClick={increasePage}>
+          Load More
+        </button>
       </main>
       <Popular />
       <ContactForm />

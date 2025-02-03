@@ -1,17 +1,25 @@
 import { useState, useEffect } from "react";
 const APIURL = import.meta.env.VITE_API_URL;
-const POPULAR = import.meta.env.VITE_POPULAR;
-
+import { iCategory } from "../../App";
 const Popular = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const getBlogPost = async () => {
-      const res = await fetch(`${APIURL}/posts?categories=${POPULAR}`);
+    const getBlogPost = async (title: string) => {
+      const response = await fetch(`${APIURL}/categories`);
+      const catgegories = await response.json();
+      if (catgegories.length === 0) {
+        setPosts([]);
+      }
+      const filtered = catgegories.filter(
+        (category: iCategory) => category.name === title
+      );
+      let id = filtered[0].id;
+      const res = await fetch(`${APIURL}/posts?categories=${id}`);
       const data = await res.json();
       setPosts(data);
     };
-    getBlogPost();
+    getBlogPost("Popular");
   }, []);
 
   const isRoot = () => {

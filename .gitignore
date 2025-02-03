@@ -3,3 +3,6 @@
 .env.local
 .env.prod
 wordpress/
+db_data
+**/dist
+wordpress_data/

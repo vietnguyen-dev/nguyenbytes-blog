@@ -4,23 +4,20 @@ FROM node:20-alpine
 # Step 2: Set the working directory inside the container
 WORKDIR /app
 
-# Step 3: Copy package.json and package-lock.json (or yarn.lock) to install dependencies
+# Step 3: Copy package.json and package-lock.json to leverage Docker cache
 COPY package*.json ./
 
-# Step 4: Install project dependencies
+# Step 4: Install dependencies
 RUN npm install
 
-# Step 5: Install TypeScript and types
-RUN npm install -g typescript @types/node @types/express
-
-# Step 6: Copy the rest of the application code to the container
+# Step 5: Copy all source code into the container
 COPY . .
 
-# Step 7: Compile TypeScript files
-RUN tsc
+# Step 6: Build TypeScript project
+RUN npm run build
 
-# Step 8: Expose the port the app will run on
+# Step 7: Expose the port the app will run on
 EXPOSE 8081
 
-# Step 9: Command to start the Express app (using `ts-node` for running TypeScript directly)
-CMD ["npm", "start"]
+# Step 8: Start the app (from dist/ directory)
+CMD ["node", "dist/index.js"]

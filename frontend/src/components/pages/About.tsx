@@ -6,17 +6,16 @@ import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";
 
 const APIURL = import.meta.env.VITE_API_URL;
-const ABOUT = import.meta.env.VITE_ABOUT;
 
 const About = () => {
   const [about, setAbout] = useState<iWordpressRes | null>(null);
 
   useEffect(() => {
     const getBlogPost = async () => {
-      const res = await fetch(`${APIURL}/pages/${ABOUT}`);
-      const data: iWordpressRes = await res.json();
+      const res = await fetch(`${APIURL}/pages?slug=about`);
+      const data: iWordpressRes[] = await res.json();
       console.log(data);
-      setAbout(data);
+      setAbout(data[0]);
     };
     getBlogPost();
   }, []);

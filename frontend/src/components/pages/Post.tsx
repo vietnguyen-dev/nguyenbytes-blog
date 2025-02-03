@@ -8,7 +8,12 @@ const APIURL = import.meta.env.VITE_API_URL;
 
 export const replace = (content: string | undefined) => {
   if (!content) return "";
-  return content.replace(/<p>/g, "<p class=mb-4>");
+  let newContent = content.replace(/<p>/g, "<p class='mb-4'>");
+  let newerContent = newContent.replace(
+    /<ul(?:\s[^>]*)?>/g,
+    "<ul class='list-disc ml-6'>"
+  );
+  return newerContent;
 };
 
 const Post = () => {
