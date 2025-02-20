@@ -1,24 +1,27 @@
-# Step 1: Build the application using Node 20
+# Step 1: Build the React app
 FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Install dependencies
+# Copy dependencies files and install dependencies
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the entire project and build it
+# Copy the project files and build the app
 COPY . .
 RUN npm run build
 
-# Step 2: Serve the build with a simple HTTP server (using Nginx)
+# Step 2: Use NGINX to serve the React build files
 FROM nginx:alpine
 
-# Copy the build output from the build stage to Nginx's public directory
+# Remove default nginx.conf and replace it with the custom one
+COPY nginx.conf /etc/nginx/templates/default.conf.template
+
+# Copy the built React files to NGINX's public directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose the port that the Nginx server will run on
-EXPOSE 3000
+# Expose port 80 for the web server
+EXPOSE 80
 
-# Command to start Nginx server
+# Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
