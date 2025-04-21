@@ -56,10 +56,12 @@ const Projects = () => {
             </div>
           );
         })}
+      </main>
+      <div className="text-center">
         <button className="btn btn-secondary" onClick={increasePage}>
           Load More
         </button>
-      </main>
+      </div>
       <Popular />
       <ContactForm />
     </Page>

@@ -7,24 +7,11 @@ services:
       - "80:80"
     environment:
       - VITE_API_URL=${VITE_API_URL}
-      - VITE_EMAIL_API=${VITE_EMAIL_API}
+      - VITE_EMAIL_LAMBDA=${VITE_EMAIL_LAMBDA}
       # Adjust this based on your setup
     depends_on:
       - wordpress
       - db
-      - email-api
-    networks:
-      - app-network
-    restart: always
-  email-api:
-    build:
-      context: ./email-api
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"
-    environment:
-      - EMAIL_USER=${EMAIL_USER}
-      - EMAIL_PASS=${EMAIL_PASS}
     networks:
       - app-network
     restart: always
