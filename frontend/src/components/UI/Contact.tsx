@@ -24,6 +24,7 @@ const ContactForm = () => {
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(EMAIL_API);
     try {
       const res = await fetch(EMAIL_API, {
         method: "POST",

@@ -3,6 +3,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    command: sh -c "printenv"
     ports:
       - "80:80"
     environment:
