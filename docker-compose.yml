@@ -1,7 +1,4 @@
 services:
-  test:
-    image: alpine
-    command: ["sh", "-c", "env && sleep 3600"]
   app:
     build:
       context: ./frontend
