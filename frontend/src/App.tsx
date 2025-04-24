@@ -26,7 +26,6 @@ function App() {
   const [loadMore, setLoadMore] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log(APIURL);
     const getBlogPost = async (title: string) => {
       const response = await fetch(`${APIURL}/categories`);
       const catgegories = await response.json();

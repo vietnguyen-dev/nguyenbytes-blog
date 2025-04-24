@@ -3,12 +3,14 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+        VITE_EMAIL_LAMBDA: ${VITE_EMAIL_LAMBDA}
     ports:
       - "80:80"
     environment:
       - VITE_API_URL=${VITE_API_URL}
       - VITE_EMAIL_LAMBDA=${VITE_EMAIL_LAMBDA}
-      # Adjust this based on your setup
     depends_on:
       - wordpress
       - db

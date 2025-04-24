@@ -1,6 +1,11 @@
 # Step 1: Build the React app
 FROM node:20-alpine AS build
 
+ARG VITE_API_URL
+ARG VITE_EMAIL_LAMBDA
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_EMAIL_LAMBDA=$VITE_EMAIL_LAMBDA 
+
 WORKDIR /app
 
 # Copy dependencies files and install dependencies
