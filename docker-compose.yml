@@ -7,7 +7,7 @@ services:
         VITE_API_URL: ${VITE_API_URL}
         VITE_EMAIL_LAMBDA: ${VITE_EMAIL_LAMBDA}
     ports:
-      - "80:80"
+      - "8081:80"
     environment:
       - VITE_API_URL=${VITE_API_URL}
       - VITE_EMAIL_LAMBDA=${VITE_EMAIL_LAMBDA}
