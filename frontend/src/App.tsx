@@ -64,9 +64,7 @@ function App() {
 
   return (
     <Page>
-      <h1 className="text-xl font-bold mb-8 text-gray-400 tracking-widest">
-        ARTICLES
-      </h1>
+      <h1 className="text-xl font-bold mb-8 tracking-widest">ARTICLES</h1>
       <main className="flex flex-col lg:flex-row ">
         <div className="flex flex-col mr-6">
           {blogPosts.map((post: any) => (
