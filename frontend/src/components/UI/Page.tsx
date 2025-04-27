@@ -23,7 +23,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
 
   return (
     <>
-      <div className="navbar bg-base-100 z-50 sticky top-0 shadow-xl px-6 md:px-12 lg:px-36 xl:px-[25%]">
+      <div className="navbar bg-base-100 z-50 sticky top-0 shadow-xl md:px-36 lg:px-[20%] xl:px-[22%]">
         <div className="flex-1">
           <h1 className="font-bold text-lg lg:text-2xl">
             <a href="/">Nguyen Bytes</a>
@@ -121,7 +121,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
           </svg>
         </label>
       </div>
-      <div className="m-6 md:px-12 lg:px-36 xl:px-[25%]">{children}</div>
+      <div className="px-2 md:px-36 lg:px-[20%] xl:px-[22%]">{children}</div>
       <footer className="footer bg-neutral text-neutral-content flex justify-between content-center px-6 py-4 md:px-12 lg:px-36 xl:px-[20%]">
         <div className="flex flex-col md:flex-row">
           <a href="/" className="mr-3">
