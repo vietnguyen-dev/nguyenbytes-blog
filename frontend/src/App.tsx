@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Page from "./components/UI/Page";
 import Popular from "./components/UI/Popular";
 import ContactForm from "./components/UI/Contact";
+
 const APIURL = import.meta.env.VITE_API_URL;
 
 export interface iCategory {
@@ -64,14 +65,14 @@ function App() {
 
   return (
     <Page>
-      <h1 className="text-xl font-bold my-8 text-gray-500 tracking-widest">
+      <h1 className="text-2xl font-bold my-8 text-gray-500 tracking-widest">
         ARTICLES
       </h1>
       <main className="flex flex-col lg:flex-row ">
         <div className="flex flex-col mr-6">
           {blogPosts.map((post: any) => (
             <div className="mb-12" key={post.id}>
-              <h2 className="mb-3 text-xl font-semibold">
+              <h2 className="mb-3 text-2xl font-semibold">
                 <a
                   href={`/${post.id}`}
                   className="font-bold mb-3 hover:border-b-2 hover:border-blue-400"

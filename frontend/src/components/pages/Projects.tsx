@@ -33,8 +33,8 @@ const Projects = () => {
 
   return (
     <Page>
-      <h2 className="text-center font-bold text-2xl mb-3 md: text-left">
-        Projects
+      <h2 className="text-center font-bold text-xl my-8 text-gray-500 md:text-left">
+        PROJECTS
       </h2>
       <main className="grid place-items-center grid-cols-1 md:grid-cols-2">
         {blogPosts.map((post: any) => {

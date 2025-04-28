@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import githubLogo from "../../img/github-mark-white.svg";
 import linkedinLOGO from "../../img/linkedin-app-white-icon.svg";
+import HeaderImg from "./headerImg";
 
 interface iPageProps {
   children: React.ReactNode;
@@ -10,20 +11,42 @@ const Page: React.FC<iPageProps> = ({ children }) => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "winter" // Default to 'winter' theme
   );
+  const [scrollY, setScrollY] = useState(0);
 
-  // Apply the selected theme and save it to localStorage
   useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [theme]);
 
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme as "winter" | "night");
+    }
+  }, []);
+
   const toggleTheme = () => {
-    setTheme(theme === "winter" ? "night" : "winter");
+    setTheme((prevTheme) => (prevTheme === "winter" ? "night" : "winter"));
   };
 
   return (
     <>
-      <div className="navbar bg-base-100 z-50 sticky top-0 shadow-xl md:px-36 lg:px-[20%] xl:px-[22%]">
+      <div
+        className={`navbar z-50 ${
+          scrollY > 0
+            ? "sticky bg-base-100 bg-opacity-75 shadow-xl"
+            : "absolute"
+        } top-0 md:px-36 lg:px-[20%] xl:px-[22%]`}
+      >
         <div className="flex-1">
           <h1 className="font-bold text-lg lg:text-2xl">
             <a href="/">Nguyen Bytes</a>
@@ -121,9 +144,10 @@ const Page: React.FC<iPageProps> = ({ children }) => {
           </svg>
         </label>
       </div>
+      <HeaderImg theme={theme} />
       <div className="px-2 md:px-36 lg:px-[20%] xl:px-[22%]">{children}</div>
       <footer className="footer bg-neutral text-neutral-content flex justify-between content-center px-6 py-4 md:px-12 lg:px-36 xl:px-[20%]">
-        <div className="flex flex-col md:flex-row">
+        <div>
           <a href="/" className="mr-3">
             Blog
           </a>
