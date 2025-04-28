@@ -8,7 +8,6 @@ const ContactForm = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
-  const [sent, sentStatus] = useState<boolean>(false);
   const [btnStatus, setBtnStatus] = useState<boolean>(false);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const ContactForm = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        sentStatus(true);
+        console.log("email sent");
       } else {
         console.error(data.error);
       }
