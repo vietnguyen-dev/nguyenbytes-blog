@@ -77,7 +77,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
               ></path>
             </svg>
           </button>
-          <dialog id="nav-modal" className="modal top-[-38%]">
+          <dialog id="nav-modal" className="modal top-[-30%]">
             <div className="modal-box">
               <form method="dialog">
                 {/* if there is a button in form, it will close the modal */}
