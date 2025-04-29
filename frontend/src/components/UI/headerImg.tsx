@@ -2,6 +2,8 @@ import headerImg from "../../img/header.jpeg";
 import headerImgLight from "../../img/header-light.jpg";
 import headerImgWide from "../../img/header-wide.jpg";
 import headerImageLightWide from "../../img/header-light-wide.jpg";
+import headerDesktop from "../../img/header-desktop.jpg";
+import headerDesktopLight from "../../img/header-light-desktop.jpg";
 
 interface iHeaderImgProps {
   theme: string;
@@ -16,7 +18,11 @@ const HeaderImg: React.FC<iHeaderImgProps> = ({ theme }) => {
       />
       <img
         src={theme === "winter" ? headerImageLightWide : headerImgWide}
-        className="hidden sm:block sm:mx-auto md:object-cover md:object-top md:h-1/2 lg:border-red-500 xl:border-gray-500"
+        className="hidden sm:block md:hidden"
+      />
+      <img
+        src={theme === "winter" ? headerDesktopLight : headerDesktop}
+        className="hidden lg:block lg:mx-auto"
       />
     </>
   );
