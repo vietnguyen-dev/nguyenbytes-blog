@@ -22,7 +22,7 @@ const HeaderImg: React.FC<iHeaderImgProps> = ({ theme }) => {
       />
       <img
         src={theme === "winter" ? headerDesktopLight : headerDesktop}
-        className="hidden lg:block lg:mx-auto"
+        className="hidden md:block md:mx-auto"
       />
     </>
   );
