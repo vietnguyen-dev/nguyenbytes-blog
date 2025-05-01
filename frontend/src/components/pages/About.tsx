@@ -24,7 +24,7 @@ const About = () => {
     <Page>
       {about ? (
         <main className="lg:mx-24">
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-3xl font-bold mt-6 mb-3">
             {about.title.rendered}
           </h2>
           <div

@@ -41,7 +41,9 @@ const Post = () => {
     <Page>
       {page ? (
         <main className="lg:mx-24">
-          <h2 className="text-3xl mb-6">{page.title.rendered}</h2>
+          <h2 className="text-3xl font-bold mt-6 mb-3">
+            {page.title.rendered}
+          </h2>
           <p className="mb-3">
             Posted on {formatDate(page.date)}, Updated on{" "}
             {formatDate(page.modified)}

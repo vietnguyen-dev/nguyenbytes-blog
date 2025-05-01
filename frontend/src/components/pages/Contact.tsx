@@ -5,7 +5,7 @@ import Popular from "../UI/Popular";
 const Contact = () => {
   return (
     <Page>
-      <h2 className="text-2xl font-bold mb-3">Contact</h2>
+      <h2 className="text-3xl font-bold mt-6 mb-3">Contact</h2>
       <p className="mb-3">
         Email me at the form below or message me on linkedin at the icon in the
         footer!
