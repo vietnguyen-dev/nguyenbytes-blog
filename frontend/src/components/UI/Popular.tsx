@@ -31,12 +31,12 @@ const Popular = () => {
 
   return (
     <div className={`mt-10 sticky top-20 ${root && "lg:h-screen"}`}>
-      <h2 className="font-bold mb-4 text-gray-400 font-medium tracking-widest">
+      <h2 className="font-bold mb-4 text-gray-400 font-medium tracking-widest px-2">
         POPULAR CONTENT
       </h2>
       <div>
         {posts.map((post: any) => (
-          <div key={post.id} className="mb-3">
+          <div key={post.id} className="mb-3 px-2">
             <h2 className="text-lg">
               <a
                 href={`/${post.id}`}

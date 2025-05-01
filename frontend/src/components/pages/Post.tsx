@@ -41,10 +41,10 @@ const Post = () => {
     <Page>
       {page ? (
         <main className="lg:mx-24">
-          <h2 className="text-3xl font-bold mt-6 mb-3">
+          <h2 className="text-3xl font-bold mt-6 mb-3 px-2">
             {page.title.rendered}
           </h2>
-          <p className="mb-3">
+          <p className="mb-3 px-2">
             Posted on {formatDate(page.date)}, Updated on{" "}
             {formatDate(page.modified)}
           </p>
@@ -52,6 +52,7 @@ const Post = () => {
             dangerouslySetInnerHTML={{
               __html: replace(page.content?.rendered),
             }}
+            className="px-2"
           />
           <Popular />
           <ContactForm />
