@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
-const APIURL = import.meta.env.VITE_API_URL;
+const CDN_KEY = import.meta.env.VITE_CDN_API_KEY;
+const SPACE_ID = import.meta.env.VITE_SPACE_ID;
+
 const Popular = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const getBlogPost = async () => {};
-    console.log("test");
+    const getBlogPost = async () => {
+      const response = await fetch(
+        `https://cdn.contentful.com/spaces/${SPACE_ID}/entries?access_token=${CDN_KEY}&content_type=blog`,
+      );
+      const data = await response.json();
+      setPosts(data);
+      console.log(data);
+    };
+
     getBlogPost();
   }, []);
 

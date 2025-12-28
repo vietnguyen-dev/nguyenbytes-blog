@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import Page from "./components/UI/Page";
 import Popular from "./components/UI/Popular";
 import ContactForm from "./components/UI/Contact";
@@ -10,6 +11,7 @@ import iContentfulRes from "./interfaces/iContentfulRes";
 
 function App() {
   const [posts, setPosts] = useState<iContentfulRes | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getBlogPost = async () => {
@@ -32,21 +34,35 @@ function App() {
     );
   }
 
+  const goToPost = (id: string) => {
+    // Method 1: String template
+    navigate(`/post?id=${id}`);
+
+    // Method 2: Using URLSearchParams
+    navigate(`/post?${new URLSearchParams({ id: id })}`);
+
+    // Method 3: Multiple query params
+    navigate(`/post?id=${id}`);
+  };
+
   return (
     <Page>
-      <h1 className="text-2xl font-bold my-8 text-gray-500 tracking-widest">
+      <h1 className="text-2xl font-bold mt-8 text-gray-500 tracking-widest">
         ARTICLES
       </h1>
       <main className="flex flex-col lg:flex-row ">
         <div className="flex flex-col mr-6">
           {posts.items.map((post) => (
-            <div key={post.fields.id} className="card shadow-xl p-10">
+            <div key={post.fields.id} className="card shadow-xl p-5 md:px-10">
               <h3 className="text-gray-500 mb-3 text-xl">
                 {post.fields.title}
               </h3>
               <p className="mb-3">{post.fields.post}</p>
-              <button className="btn btn-primary ml-auto md:w-1/6">
-                Primary
+              <button
+                className="btn btn-primary ml-auto"
+                onClick={() => goToPost(post.sys.id)}
+              >
+                Read More...
               </button>
             </div>
           ))}
