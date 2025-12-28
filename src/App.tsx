@@ -40,9 +40,14 @@ function App() {
       <main className="flex flex-col lg:flex-row ">
         <div className="flex flex-col mr-6">
           {posts.items.map((post) => (
-            <div key={post.fields.id}>
-              <h3 className="text-gray-500">{post.fields.title}</h3>
-              <p>{post.fields.post}</p>
+            <div key={post.fields.id} className="card shadow-xl p-10">
+              <h3 className="text-gray-500 mb-3 text-xl">
+                {post.fields.title}
+              </h3>
+              <p className="mb-3">{post.fields.post}</p>
+              <button className="btn btn-primary ml-auto md:w-1/6">
+                Primary
+              </button>
             </div>
           ))}
         </div>
