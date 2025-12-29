@@ -19,13 +19,6 @@ const Popular = () => {
     getBlogPost();
   }, []);
 
-  const isRoot = () => {
-    const path = window.location.pathname;
-    return path === "/";
-  };
-
-  const root = isRoot();
-
   return (
     <div className={`mt-10 sticky top-20`}>
       <h2 className="font-bold mb-4 text-gray-400 font-medium tracking-widest px-2">

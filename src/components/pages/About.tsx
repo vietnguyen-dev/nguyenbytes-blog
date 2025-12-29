@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import Page from "../UI/Page";
 
-const APIURL = import.meta.env.VITE_API_URL;
-
 const About = () => {
   useEffect(() => {
     const getBlogPost = async () => {
