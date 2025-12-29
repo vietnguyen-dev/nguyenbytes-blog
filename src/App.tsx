@@ -35,13 +35,6 @@ function App() {
   }
 
   const goToPost = (id: string) => {
-    // Method 1: String template
-    navigate(`/post?id=${id}`);
-
-    // Method 2: Using URLSearchParams
-    navigate(`/post?${new URLSearchParams({ id: id })}`);
-
-    // Method 3: Multiple query params
     navigate(`/post?id=${id}`);
   };
 

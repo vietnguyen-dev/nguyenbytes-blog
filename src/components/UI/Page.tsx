@@ -9,7 +9,7 @@ interface iPageProps {
 
 const Page: React.FC<iPageProps> = ({ children }) => {
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "winter" // Default to 'winter' theme
+    localStorage.getItem("theme") || "winter", // Default to 'winter' theme
   );
   const [scrollY, setScrollY] = useState(0);
 

@@ -3,7 +3,8 @@ import { useSearchParams } from "react-router";
 import Page from "../UI/Page";
 import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";
-import iContentfulPostRes from "../interfaces/iContentfulPostRes";
+import iContentfulPostRes from "../../interfaces/iContentfulRes.ts";
+
 const CDN_KEY = import.meta.env.VITE_CDN_API_KEY;
 const SPACE_ID = import.meta.env.VITE_SPACE_ID;
 
@@ -26,7 +27,7 @@ const Post = () => {
 
     getBlogPost();
   }, [id]);
-
+  /*
   function formatDate(dateString: string): string {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -35,6 +36,7 @@ const Post = () => {
       day: "numeric",
     });
   }
+  */
   return (
     <Page>
       <main className="lg:mx-24">
