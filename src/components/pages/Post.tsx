@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router";
 import Page from "../UI/Page";
 import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";
-import iContentfulPostRes from "../../interfaces/iContentfulRes.ts";
+import iContentfulPostRes from "../../interfaces/iContentfulPostRes";
 
 const CDN_KEY = import.meta.env.VITE_CDN_API_KEY;
 const SPACE_ID = import.meta.env.VITE_SPACE_ID;
@@ -21,22 +21,13 @@ const Post = () => {
         `https://cdn.contentful.com/spaces/${SPACE_ID}/entries/${id}?access_token=${CDN_KEY}`,
       );
       const data = await response.json();
-      console.log(data);
+      console.log(data.fields);
       setPost(data);
     };
 
     getBlogPost();
-  }, [id]);
-  /*
-  function formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
-  */
+  }, []);
+
   return (
     <Page>
       <main className="lg:mx-24">
@@ -45,7 +36,7 @@ const Post = () => {
             <h1 className="text-3xl font-bold mt-6 mb-3 px-2">
               {post.fields.title}
             </h1>
-            <p>{post.fields.post}</p>
+            <p className="mx-3">{post.fields.post}</p>
           </div>
         ) : (
           <p>loading...</p>

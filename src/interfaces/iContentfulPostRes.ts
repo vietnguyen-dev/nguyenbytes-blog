@@ -31,18 +31,9 @@ interface iContentfulPostRes {
   fields: {
     id: number;
     title: string;
-    post: any; // or use Document from '@contentful/rich-text-types'
-    publishedDate: string;
-    author: string;
-    excerpt: string;
-    featuredImage?: {
-      sys: {
-        id: string;
-        linkType: string;
-        type: string;
-      };
-    };
+    post: string; // or use Document from '@contentful/rich-text-types'
     // Add any other fields your blog post has
+    dateCreated: Date;
   };
   metadata: {
     tags: any[];
