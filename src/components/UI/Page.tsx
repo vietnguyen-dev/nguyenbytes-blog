@@ -48,9 +48,9 @@ const Page: React.FC<iPageProps> = ({ children }) => {
         } top-0 md:px-36 lg:px-[20%] xl:px-[22%]`}
       >
         <div className="flex-1">
-          <h1 className="font-bold text-lg lg:text-2xl">
+          <h3 className="font-bold text-2xl">
             <a href="/">Nguyen Bytes</a>
-          </h1>
+          </h3>
         </div>
         <div className="flex-none md:hidden">
           <button
