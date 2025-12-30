@@ -36,7 +36,7 @@ const Post = () => {
             <h1 className="text-3xl font-bold mt-6 mb-3 px-2">
               {post.fields.title}
             </h1>
-            <p className="mx-3">{post.fields.post}</p>
+            <p className="mx-3 whitespace-pre-line">{post.fields.post}</p>
           </div>
         ) : (
           <p>loading...</p>

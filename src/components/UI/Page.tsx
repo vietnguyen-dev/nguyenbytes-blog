@@ -145,7 +145,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
         </label>
       </div>
       <HeaderImg theme={theme} />
-      <div className="px-2 md:px-36 lg:px-[20%] xl:px-[22%]">{children}</div>
+      <div className="px-8 md:px-36 lg:px-[20%] xl:px-[22%]">{children}</div>
       <footer className="footer bg-neutral text-neutral-content flex justify-between content-center px-6 py-4 md:px-12 lg:px-36 xl:px-[20%]">
         <div className="md:flex md:flex-row">
           <a href="/" className="mr-3">

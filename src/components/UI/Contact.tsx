@@ -21,7 +21,7 @@ const ContactForm = () => {
     name: string,
     email: string,
     message: string,
-    setBtnStatus: (status: boolean) => void
+    setBtnStatus: (status: boolean) => void,
   ) => {
     const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     const validEmail = pattern.test(email);
