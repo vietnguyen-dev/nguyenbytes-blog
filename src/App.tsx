@@ -43,7 +43,7 @@ function App() {
       <h1 className="text-2xl font-bold mt-8 text-gray-500 tracking-widest">
         ARTICLES
       </h1>
-      <main className="flex flex-col lg:flex-row ">
+      <main className="flex flex-col lg:flex-row">
         <div className="flex flex-col mr-6">
           {posts.items.map((post) => (
             <div key={post.fields.id} className="card shadow-xl p-5 md:px-10">

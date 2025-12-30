@@ -20,7 +20,7 @@ const Popular = () => {
   }, []);
 
   return (
-    <div className={`mt-10 sticky top-20`}>
+    <div className={`mt-10`}>
       <h2 className="font-bold mb-4 text-gray-400 font-medium tracking-widest px-2">
         POPULAR CONTENT
       </h2>
