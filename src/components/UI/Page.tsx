@@ -45,7 +45,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
           scrollY > 0
             ? "sticky bg-base-100 bg-opacity-75 shadow-xl"
             : "absolute"
-        } top-0 md:px-36 lg:px-[20%] xl:px-[22%]`}
+        } top-0 `}
       >
         <div className="flex-1">
           <h3 className="font-bold text-2xl">
