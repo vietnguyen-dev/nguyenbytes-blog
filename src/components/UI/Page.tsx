@@ -105,7 +105,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
             </form>
           </dialog>
         </div>
-        <nav className="hidden mr-6 z-99 md:block">
+        <nav className="hidden z-99 md:block">
           <a href="/" className="mr-3">
             Blog
           </a>
@@ -145,8 +145,8 @@ const Page: React.FC<iPageProps> = ({ children }) => {
         </label>
       </div>
       <HeaderImg theme={theme} />
-      <div className="px-8 md:px-36 lg:px-[20%] xl:px-[22%]">{children}</div>
-      <footer className="footer bg-neutral text-neutral-content flex justify-between content-center px-6 py-4 md:px-12 lg:px-36 xl:px-[20%]">
+      <div className="mx-6 mt-6">{children}</div>
+      <footer className="footer bg-neutral text-neutral-content flex justify-between content-center p-6">
         <div className="md:flex md:flex-row">
           <a href="/" className="mr-3">
             Blog
@@ -161,7 +161,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
             Contact
           </a>
         </div>
-        <nav className="flex justify-end">
+        <nav className="flex flex-col items-end">
           <a href="https://www.linkedin.com/in/vietnguyen-dev/">
             <img
               src={linkedinLOGO}
@@ -170,7 +170,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
             />
           </a>
           <a href="https://github.com/vietnguyen-dev">
-            <img src={githubLogo} alt="github logo" className="w-1/2" />
+            <img src={githubLogo} alt="github logo" className="w-1/2 ml-auto" />
           </a>
         </nav>
       </footer>

@@ -40,20 +40,17 @@ function App() {
 
   return (
     <Page>
-      <h2 className="text-2xl font-bold mt-8 mx-3 text-gray-500 tracking-widest">
+      <h2 className="text-2xl font-bold text-gray-500 tracking-widest">
         ARTICLES
       </h2>
-      <main className="flex flex-col mx-3 lg:flex-row">
-        <div className="flex flex-col mr-6 lg:w-3/4">
+      <main className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:w-3/4">
           {posts.items.map((post) => (
-            <div
-              key={post.fields.id}
-              className="card shadow-xl p-5 mb-5 pt-5 md:px-10"
-            >
-              <h3 className="text-gray-500 mb-3 text-xl font-bold">
+            <div key={post.fields.id} className="card shadow-xl p-6">
+              <h3 className="text-gray-500 text-xl font-bold mb-3">
                 {post.fields.title}
               </h3>
-              <p className="mb-3 line-clamp-3">{post.fields.post}</p>
+              <p className="mb-3 line-clamp-3 mb-3">{post.fields.post}</p>
               <button
                 className="btn btn-primary ml-auto"
                 onClick={() => goToPost(post.sys.id)}
