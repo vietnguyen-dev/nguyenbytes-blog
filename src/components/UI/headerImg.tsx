@@ -4,12 +4,10 @@ import headerImgWide from "../../img/header-wide.jpg";
 import headerImageLightWide from "../../img/header-light-wide.jpg";
 import headerDesktop from "../../img/header-desktop.jpg";
 import headerDesktopLight from "../../img/header-light-desktop.jpg";
+import { useTheme } from "./ThemeProvider";
 
-interface iHeaderImgProps {
-  theme: string;
-}
-
-const HeaderImg: React.FC<iHeaderImgProps> = ({ theme }) => {
+const HeaderImg: React.FC = () => {
+  const { theme } = useTheme();
   return (
     <>
       <img

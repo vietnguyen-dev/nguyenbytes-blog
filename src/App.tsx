@@ -29,7 +29,7 @@ function App() {
   if (!posts) {
     return (
       <Page>
-        <div>Loading...</div>
+        <span className="loading loading-spinner loading-xl"></span>
       </Page>
     );
   }

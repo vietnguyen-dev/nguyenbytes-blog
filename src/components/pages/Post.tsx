@@ -30,7 +30,7 @@ const Post = () => {
 
   return (
     <Page>
-      <main className="lg:mx-24">
+      <main>
         {post ? (
           <div>
             <h1 className="text-3xl font-bold mt-6 mb-3 px-2">
@@ -39,7 +39,7 @@ const Post = () => {
             <p className="mx-3 whitespace-pre-line">{post.fields.post}</p>
           </div>
         ) : (
-          <p>loading...</p>
+          <span className="loading loading-spinner loading-xl"></span>
         )}
         <Popular />
         <ContactForm />
