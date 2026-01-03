@@ -26,11 +26,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
   return (
     <ThemeProvider>
       <div
-        className={`navbar z-50 ${
-          scrollY > 50
-            ? "sticky bg-base-100 bg-opacity-75 shadow-xl"
-            : "absolute"
-        } top-0 md:w-2/3 md:mx-auto`}
+        className={`navbar z-50 sticky bg-base-100 bg-opacity-75 top-0 ${scrollY > 50 && `shadow-xl`}`}
       >
         <div className="flex-1">
           <h3 className="font-bold text-2xl">
