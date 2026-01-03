@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import githubLogo from "../../img/github-mark-white.svg";
 import linkedinLOGO from "../../img/linkedin-app-white-icon.svg";
-import HeaderImg from "./headerImg";
 import ThemeToggle from "./ThemeToggle";
 import { ThemeProvider } from "./ThemeProvider";
 
@@ -107,7 +106,6 @@ const Page: React.FC<iPageProps> = ({ children }) => {
         </nav>
         <ThemeToggle />
       </div>
-      <HeaderImg />
       <div className="mx-6 mt-6">{children}</div>
       <footer className="footer bg-neutral text-neutral-content flex justify-between content-center p-6">
         <div className="md:flex md:flex-row">
