@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import Page from "./components/UI/Page";
 import Popular from "./components/UI/Popular";
 import ContactForm from "./components/UI/Contact";
+import Search from "./components/UI/Search";
 
 const CDN_KEY = import.meta.env.VITE_CDN_API_KEY;
 const SPACE_ID = import.meta.env.VITE_SPACE_ID;
@@ -11,6 +12,7 @@ import iContentfulRes from "./interfaces/iContentfulRes";
 
 function App() {
   const [posts, setPosts] = useState<iContentfulRes | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,14 +40,20 @@ function App() {
     navigate(`/post?id=${id}`);
   };
 
+  const filteredPosts = posts.items.filter((post) =>
+    post.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.fields.post.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Page>
+      <Search onSearch={setSearchTerm} />
       <h2 className="text-2xl font-bold text-gray-500 tracking-widest">
         ARTICLES
       </h2>
       <main className="flex flex-col lg:flex-row">
         <div className="flex flex-col lg:w-3/4">
-          {posts.items.map((post) => (
+          {filteredPosts.map((post) => (
             <div key={post.fields.id} className="card shadow-xl p-6 mb-6">
               <h3 className="text-gray-500 text-xl font-bold mb-3">
                 {post.fields.title}
