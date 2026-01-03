@@ -49,9 +49,13 @@ function App() {
   return (
     <Page>
       <section className="my-12 py-8">
-        <h1 className="text-2xl font-bold text-center">
+        <h1 className="text-2xl font-bold text-center mb-3">
           Hello, Welcome to my Developer Blog!
         </h1>
+        <p className="text-center">
+          I talk about what I am working on currently and trends in software
+          development!
+        </p>
         <div className="flex gap-4 justify-center mt-6">
           <a href="/contact" className="btn btn-primary">
             CONTACT ME
@@ -67,11 +71,11 @@ function App() {
         </div>
       </section>
       <Search onSearch={setSearchTerm} />
-      <h2 className="text-2xl font-bold text-gray-500 tracking-widest">
+      <h2 className="text-2xl font-bold text-gray-500 tracking-widest mb-6">
         ARTICLES
       </h2>
-      <main className="flex flex-col lg:flex-row">
-        <div className="flex flex-col lg:w-3/4">
+      <main className="flex flex-col lg:flex-row lg:gap-8">
+        <div className="flex flex-col lg:w-3/4 lg:max-w-2xl">
           {filteredPosts.map((post) => (
             <div key={post.fields.id} className="card shadow-xl p-6 mb-6">
               <h3 className="text-gray-500 text-xl font-bold mb-3">

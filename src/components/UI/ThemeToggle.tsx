@@ -4,7 +4,7 @@ const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <label className="swap swap-rotate">
+    <label className="swap swap-rotate lg:ml-4">
       <input
         type="checkbox"
         checked={theme === "night"}
