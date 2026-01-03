@@ -16,7 +16,7 @@ const Search: React.FC<iSearchProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="form-control w-full mb-6">
+    <div className="form-control mb-6">
       <input
         type="text"
         placeholder="Search articles..."

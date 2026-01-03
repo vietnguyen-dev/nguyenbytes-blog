@@ -40,13 +40,19 @@ function App() {
     navigate(`/post?id=${id}`);
   };
 
-  const filteredPosts = posts.items.filter((post) =>
-    post.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.fields.post.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredPosts = posts.items.filter(
+    (post) =>
+      post.fields.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.fields.post.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
     <Page>
+      <section className="m-6">
+        <h1 className="text-2xl font-bold text-center">
+          Hello, Welcome to my Developer Blog!
+        </h1>
+      </section>
       <Search onSearch={setSearchTerm} />
       <h2 className="text-2xl font-bold text-gray-500 tracking-widest">
         ARTICLES
