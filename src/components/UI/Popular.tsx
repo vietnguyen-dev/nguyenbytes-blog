@@ -27,8 +27,8 @@ const Popular = () => {
       {posts && (
         <ul className="ml-3">
           {posts.items.map((post) => (
-            <li key={post.fields.id}>
-              <a>{post.fields.title}</a>
+            <li key={post.fields.id} className="mb-3">
+              <a href={`/post?id=${post.sys.id}`}>{post.fields.title}</a>
             </li>
           ))}
         </ul>
