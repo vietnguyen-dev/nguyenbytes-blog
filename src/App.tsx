@@ -77,7 +77,7 @@ function App() {
       <main className="flex flex-col lg:flex-row lg:gap-8">
         <div className="flex flex-col lg:w-3/4 lg:max-w-2xl">
           {filteredPosts.map((post) => (
-            <div key={post.fields.id} className="card shadow-xl p-6 mb-6">
+            <div key={post.fields.id} className="card bg-base-100 shadow-xl p-6 mb-6">
               <h3 className="text-gray-500 text-xl font-bold mb-3">
                 {post.fields.title}
               </h3>

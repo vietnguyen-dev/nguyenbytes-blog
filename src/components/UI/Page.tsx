@@ -40,7 +40,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
         <Cloud className="absolute top-[60%] left-[60%] w-72 h-36 text-base-content opacity-5" />
       </div>
       <div
-        className={`navbar z-50 sticky bg-base-100 bg-opacity-75 top-0 ${scrollY > 50 && `shadow-xl`}`}
+        className={`navbar z-50 sticky top-0 ${scrollY > 50 && `bg-base-100 bg-opacity-75 shadow-xl`}`}
       >
         <div className="w-full mx-auto px-6 lg:max-w-[66.666%] lg:px-16 flex">
           <div className="flex-1">
@@ -135,16 +135,16 @@ const Page: React.FC<iPageProps> = ({ children }) => {
               Contact
             </a>
           </div>
-          <nav className="flex flex-col items-end lg:flex-row lg:gap-4 lg:items-center">
+          <nav className="flex flex-col gap-3 items-end lg:flex-row lg:gap-4 lg:items-center">
             <a href="https://www.linkedin.com/in/vietnguyen-dev/">
               <img
                 src={linkedinLOGO}
                 alt="linkedin logo"
-                className="w-2/12 ml-auto lg:w-8"
+                className="w-10 ml-auto lg:w-8"
               />
             </a>
             <a href="https://github.com/vietnguyen-dev">
-              <img src={githubLogo} alt="github logo" className="w-1/2 ml-auto lg:w-8" />
+              <img src={githubLogo} alt="github logo" className="w-10 ml-auto lg:w-8" />
             </a>
           </nav>
         </div>

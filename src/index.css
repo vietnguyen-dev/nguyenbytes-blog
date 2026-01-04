@@ -3,24 +3,26 @@
 @tailwind utilities;
 
 @layer base {
-  a {
-    position: relative;
-    display: inline-block;
-  }
+  @media (min-width: 1024px) {
+    a {
+      position: relative;
+      display: inline-block;
+    }
 
-  a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: currentColor;
-    transition: width 0.3s ease-in-out;
-  }
+    a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s ease-in-out;
+    }
 
-  a:hover::after {
-    width: 100%;
+    a:hover::after {
+      width: 100%;
+    }
   }
 }
 

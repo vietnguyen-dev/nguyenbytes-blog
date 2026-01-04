@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-type Theme = "winter" | "night";
+type Theme = "winter" | "black";
 
 interface ThemeContextType {
   theme: Theme;
@@ -32,7 +32,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "winter" ? "night" : "winter"));
+    setTheme((prevTheme) => (prevTheme === "winter" ? "black" : "winter"));
   };
 
   return (
