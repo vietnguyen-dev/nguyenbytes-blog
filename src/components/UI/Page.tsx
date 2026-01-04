@@ -28,16 +28,18 @@ const Page: React.FC<iPageProps> = ({ children }) => {
     <ThemeProvider>
       {/* Background clouds */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Cloud near Nguyen Bytes title */}
-        <Cloud className="absolute top-2 left-[2%] w-48 h-24 text-base-content opacity-5" />
-        {/* Cloud behind and top-left of h1 welcome message */}
-        <Cloud className="absolute top-32 left-[8%] w-80 h-40 text-base-content opacity-5" />
-        <Cloud className="absolute top-40 right-20 w-80 h-40 text-base-content opacity-5" />
-        <Cloud className="absolute top-[30%] left-[15%] w-72 h-36 text-base-content opacity-5" />
-        <Cloud className="absolute top-[50%] right-[10%] w-56 h-28 text-base-content opacity-5" />
-        <Cloud className="absolute top-[70%] left-[25%] w-88 h-44 text-base-content opacity-5" />
-        <Cloud className="absolute bottom-40 right-[30%] w-64 h-32 text-base-content opacity-5" />
-        <Cloud className="absolute top-[60%] left-[60%] w-72 h-36 text-base-content opacity-5" />
+        {/* Cloud behind Nguyen Bytes text in nav */}
+        <Cloud variant={1} className="absolute -top-4 -left-8 lg:left-[25%] w-64 h-32 text-base-content opacity-5" />
+        {/* Cloud behind Hello, Welcome to my Developer Blog! */}
+        <Cloud variant={2} className="absolute top-20 left-[5%] lg:left-[30%] w-96 h-48 text-base-content opacity-5" />
+        {/* Additional decorative clouds */}
+        <Cloud variant={3} className="absolute top-12 right-[5%] lg:right-[15%] w-56 h-28 text-base-content opacity-5" />
+        <Cloud variant={4} className="absolute top-[35%] left-[8%] lg:left-[20%] w-72 h-36 text-base-content opacity-5" />
+        <Cloud variant={1} className="absolute top-[40%] right-[10%] lg:right-[25%] w-64 h-32 text-base-content opacity-5" />
+        <Cloud variant={2} className="absolute top-[60%] left-[15%] lg:left-[35%] w-80 h-40 text-base-content opacity-5" />
+        <Cloud variant={3} className="absolute top-[55%] right-[8%] lg:right-[20%] w-60 h-30 text-base-content opacity-5" />
+        <Cloud variant={4} className="absolute bottom-32 left-[20%] lg:left-[28%] w-72 h-36 text-base-content opacity-5" />
+        <Cloud variant={1} className="absolute bottom-24 right-[12%] lg:right-[30%] w-56 h-28 text-base-content opacity-5" />
       </div>
       <div
         className={`navbar z-50 sticky top-0 ${scrollY > 50 && `bg-base-100 bg-opacity-75 shadow-xl`}`}
@@ -118,7 +120,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
           <ThemeToggle />
         </div>
       </div>
-      <div className="mx-6 mt-6 mb-12 px-4 lg:max-w-[66.666%] lg:mx-auto lg:px-16">{children}</div>
+      <div className="mx-6 mt-6 mb-12 px-4 lg:max-w-[66.666%] lg:mx-auto lg:px-16 relative z-10">{children}</div>
       <footer className="footer bg-neutral text-neutral-content p-6">
         <div className="w-full mx-auto lg:max-w-[66.666%] lg:px-16 flex justify-between content-center">
           <div className="flex flex-col md:flex-row">

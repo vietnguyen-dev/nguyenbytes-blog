@@ -28,15 +28,16 @@ const Search: React.FC<iSearchProps> = ({ onSearch }) => {
         <input
           type="text"
           placeholder="Search articles..."
-          className="input input-bordered w-full"
+          className="input input-bordered bg-base-100 w-full relative z-10"
           value={searchTerm}
           onChange={handleSearch}
         />
         <button
-          className="btn btn-outline"
+          className="btn btn-accent relative z-10"
           onClick={handleClear}
+          disabled={!searchTerm}
         >
-          Clear
+          CLEAR
         </button>
       </div>
     </div>
