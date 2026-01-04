@@ -29,10 +29,13 @@ const Page: React.FC<iPageProps> = ({ children }) => {
       <div
         className={`navbar z-50 sticky top-0 ${scrollY > 50 && `bg-base-100 bg-opacity-75 shadow-xl`}`}
       >
-        {/* Cloud behind Nguyen Bytes text in nav */}
-        <Cloud variant={1} className="absolute -top-8 -left-12 lg:left-[22%] w-64 h-32 text-base-content opacity-5 pointer-events-none z-0" />
-        {/* Cloud behind toggle button */}
-        <Cloud variant={3} className="absolute -top-6 -right-8 lg:right-[15%] w-56 h-28 text-base-content opacity-5 pointer-events-none z-0" />
+        {/* Clouds behind navbar - only visible when not scrolled */}
+        {scrollY <= 50 && (
+          <>
+            <Cloud variant={1} className="absolute -top-8 -left-12 lg:left-[22%] w-64 h-32 text-base-content opacity-5 pointer-events-none z-0" />
+            <Cloud variant={3} className="absolute -top-6 -right-8 lg:right-[15%] w-56 h-28 text-base-content opacity-5 pointer-events-none z-0" />
+          </>
+        )}
         <div className="w-full mx-auto px-6 lg:max-w-[66.666%] lg:px-16 flex relative z-10">
           <div className="flex-1">
             <h3 className="font-bold text-2xl">

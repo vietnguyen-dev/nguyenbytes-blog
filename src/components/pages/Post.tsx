@@ -30,13 +30,13 @@ const Post = () => {
 
   return (
     <Page>
-      <main>
+      <main className="lg:w-3/5 lg:mx-auto lg:px-8">
         {post ? (
           <div>
-            <h1 className="text-3xl font-bold mt-6 mb-3 px-2">
+            <h1 className="text-3xl font-bold mt-6 mb-3">
               {post.fields.title}
             </h1>
-            <p className="mx-3 whitespace-pre-line">{post.fields.post}</p>
+            <p className="whitespace-pre-line">{post.fields.post}</p>
           </div>
         ) : (
           <span className="loading loading-spinner loading-xl"></span>
