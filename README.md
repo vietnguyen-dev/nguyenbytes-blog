@@ -1,3 +1,17 @@
+# NguyenBytes Portfolio
+
+A modern portfolio and blog website. Visit the live site at [nguyenbytes.com](https://nguyenbytes.com)
+
+## Tech Stack
+
+- **React + TypeScript** - Component-based UI with type safety
+- **Vite** - Fast build tool and development server
+- **Contentful CMS** - Headless CMS for managing blog posts
+- **React Router** - Client-side routing
+- **Tailwind CSS + DaisyUI** - Styling framework
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
