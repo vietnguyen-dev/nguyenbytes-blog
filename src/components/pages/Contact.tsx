@@ -6,12 +6,8 @@ const Contact = () => {
   return (
     <Page>
       <h2 className="text-3xl font-bold mt-6 mb-3">Contact</h2>
-      <p className="mb-3">
-        Email me at the form below or message me on linkedin at the icon in the
-        footer!
-      </p>
-      <p>Alternatively call me at (971) 998 2695</p>
-      <ContactForm />
+      <p className="mb-3">Contact me at the below options!</p>
+      <ContactForm showHeading={false} />
       <Popular />
     </Page>
   );

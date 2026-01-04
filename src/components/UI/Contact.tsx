@@ -1,120 +1,55 @@
-import { useState, useEffect } from "react";
+import thinkpadImg from "../../img/thinkpad.jpeg";
+import macbookImg from "../../img/macbook-bg-removed.png";
+import { useTheme } from "./ThemeProvider";
 
-const EMAIL_API = import.meta.env.VITE_EMAIL_LAMBDA;
+interface ContactFormProps {
+  showHeading?: boolean;
+}
 
-let debounceTimer: ReturnType<typeof setTimeout>;
-
-const ContactForm = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
-  const [btnStatus, setBtnStatus] = useState<boolean>(false);
-
-  useEffect(() => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      checkBtnStatus(name, email, message, setBtnStatus);
-    }, 500); // wait 500ms after the user stops typing
-  }, [name, email, message]);
-
-  const checkBtnStatus = (
-    name: string,
-    email: string,
-    message: string,
-    setBtnStatus: (status: boolean) => void,
-  ) => {
-    const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    const validEmail = pattern.test(email);
-
-    if (name.length > 0 && message.length > 0 && validEmail) {
-      setBtnStatus(true);
-    } else {
-      setBtnStatus(false);
-    }
-  };
-
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handleMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
-    e.target.style.height = "auto";
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  };
-
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(EMAIL_API, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          subject: "Blog Inquiry",
-          email: email,
-          message: message,
-        }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        console.log("email sent");
-      } else {
-        console.error(data.error);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
+  const { theme } = useTheme();
+  const isDark = theme === "black";
+  const laptopImg = isDark ? macbookImg : thinkpadImg;
   return (
-    <div className="flex mt-12">
-      <div className="card bg-base-100 shadow-xl max-w-sm mx-auto mb-3">
-        <div className="card-body">
-          <h2 className="card-title">Contact Me!</h2>
-          <p className="mb-3">
-            If you want to work with me or ask me a question send it here!
-          </p>
-          <form className="flex flex-col" onSubmit={sendEmail}>
-            <input
-              type="text"
-              placeholder="name"
-              className="input input-bordered validator w-full max-w-xs mb-3"
-              value={name}
-              required
-              onChange={handleName}
-            />
-            <input
-              type="email"
-              placeholder="email@email.com"
-              className="input input-bordered validator w-full max-w-xs mb-3"
-              value={email}
-              required
-              onChange={handleEmail}
-            />
-            <textarea
-              placeholder="type message here"
-              className="input input-bordered w-full max-w-xs mb-3 h-auto"
-              value={message}
-              required
-              onChange={handleMessage}
-              rows={5}
-            />
-            <div className="card-actions justify-end">
-              <button
-                className="btn btn-primary w-full max-w-xs"
-                disabled={!btnStatus}
-              >
-                SUBMIT
-              </button>
-            </div>
-          </form>
+    <div className="mt-10">
+      {showHeading && (
+        <h2 className="font-bold mb-4 text-gray-400 font-medium tracking-widest px-2">
+          CONTACT
+        </h2>
+      )}
+      <div className="flex flex-col lg:flex-row lg:gap-8">
+        <div className="flex flex-col gap-3 ml-3">
+          <div>
+            <p className="font-semibold text-sm opacity-70">Email</p>
+            <a href="mailto:viet@nguyenbytes.com" className="text-lg">
+              viet@nguyenbytes.com
+            </a>
+          </div>
+          <div>
+            <p className="font-semibold text-sm opacity-70">Phone</p>
+            <a href="tel:+1234567890" className="text-lg">
+              (971) 998-2695
+            </a>
+          </div>
+          <div>
+            <p className="font-semibold text-sm opacity-70">LinkedIn</p>
+            <a
+              href="https://www.linkedin.com/in/vietnguyen-dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg"
+            >
+              linkedin.com/in/vietnguyen-dev
+            </a>
+          </div>
+        </div>
+        <div className="mt-6 lg:-mt-32">
+          <img
+            src={laptopImg}
+            alt={isDark ? "Macbook laptop" : "Thinkpad laptop"}
+            className="rounded-lg"
+            style={{ width: "500px", height: "500px", objectFit: "cover" }}
+          />
         </div>
       </div>
     </div>
