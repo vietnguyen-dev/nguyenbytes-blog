@@ -29,7 +29,6 @@ interface iContentfulPostRes {
     };
   };
   fields: {
-    id: number;
     title: string;
     post: string; // or use Document from '@contentful/rich-text-types'
     // Add any other fields your blog post has

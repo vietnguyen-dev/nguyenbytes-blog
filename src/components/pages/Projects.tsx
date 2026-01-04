@@ -1,17 +1,60 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import Page from "../UI/Page";
 import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";
+import iContentfulResponse from "../../interfaces/iContentfulRes";
+
+const CDN_KEY = import.meta.env.VITE_CDN_API_KEY;
+const SPACE_ID = import.meta.env.VITE_SPACE_ID;
 
 const Projects = () => {
+  const [projects, setProjects] = useState<iContentfulResponse | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getProjects = async () => {
+      const tagId = "projects";
+      const response = await fetch(
+        `https://cdn.contentful.com/spaces/${SPACE_ID}/entries?access_token=${CDN_KEY}&content_type=blog&metadata.tags.sys.id[in]=${tagId}`,
+      );
+      const data = await response.json();
+      setProjects(data);
+      console.log("Projects data:", data);
+    };
+
+    getProjects();
+  }, []);
+
+  const goToPost = (id: string) => {
+    navigate(`/post?id=${id}`);
+  };
+
   return (
     <Page>
       <h2 className="text-center font-bold text-xl my-8 text-gray-500 md:text-left">
         PROJECTS
       </h2>
-      <main className="grid place-items-center grid-cols-1 md:grid-cols-2"></main>
-      <div className="text-center">
-        <button className="btn btn-secondary">Load More</button>
-      </div>
+      <main className="grid place-items-center grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {projects ? (
+          projects.items.map((project) => (
+            <div key={project.fields.id} className="card bg-base-100 shadow-xl p-6 w-full">
+              <h3 className="text-gray-500 text-xl font-bold mb-3">
+                {project.fields.title}
+              </h3>
+              <p className="mb-3 line-clamp-3">{project.fields.post}</p>
+              <button
+                className="btn btn-primary ml-auto"
+                onClick={() => goToPost(project.sys.id)}
+              >
+                READ MORE
+              </button>
+            </div>
+          ))
+        ) : (
+          <span className="loading loading-spinner loading-xl"></span>
+        )}
+      </main>
       <Popular />
       <ContactForm />
     </Page>
