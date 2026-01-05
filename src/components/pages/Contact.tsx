@@ -12,7 +12,7 @@ const Contact = () => {
           CONTACT
         </h2>
         <p className="mb-3">Contact me at the below options!</p>
-        <ContactForm showHeading={false} />
+        <ContactForm showHeading={false} showLaptop={true} />
         <Popular />
       </div>
     </Page>

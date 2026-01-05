@@ -5,9 +5,10 @@ import Cloud from "./Cloud";
 
 interface ContactFormProps {
   showHeading?: boolean;
+  showLaptop?: boolean;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true, showLaptop = false }) => {
   const { theme } = useTheme();
   const isDark = theme === "black";
   const laptopImg = isDark ? macbookImg : thinkpadImg;
@@ -49,14 +50,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
             </a>
           </div>
         </div>
-        <div className="mt-6">
-          <img
-            src={laptopImg}
-            alt={isDark ? "Macbook laptop" : "Thinkpad laptop"}
-            className="rounded-lg"
-            style={{ width: "500px", height: "500px", objectFit: "cover" }}
-          />
-        </div>
+        {showLaptop && (
+          <div className="mt-6">
+            <img
+              src={laptopImg}
+              alt={isDark ? "Macbook laptop" : "Thinkpad laptop"}
+              className="rounded-lg"
+              style={{ width: "500px", height: "500px", objectFit: "cover" }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
