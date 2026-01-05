@@ -1,6 +1,3 @@
-import thinkpadImg from "../../img/thinkpad.jpeg";
-import macbookImg from "../../img/macbook-bg-removed.png";
-import { useTheme } from "./ThemeProvider";
 import Cloud from "./Cloud";
 
 interface ContactFormProps {
@@ -8,9 +5,6 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
-  const { theme } = useTheme();
-  const isDark = theme === "black";
-  const laptopImg = isDark ? macbookImg : thinkpadImg;
   return (
     <div className="mt-10 relative">
       {showHeading && (
