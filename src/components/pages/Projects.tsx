@@ -43,8 +43,10 @@ const Projects = () => {
         {projects ? (
           projects.items.map((project) => (
             <div key={project.fields.id} className="card bg-base-100 shadow-xl p-6 w-full">
-              <h3 className="text-gray-500 text-xl font-bold mb-3">
-                {project.fields.title}
+              <h3 className="mb-3">
+                <a href={`/post?id=${project.sys.id}`} className="text-gray-500 text-xl font-bold">
+                  {project.fields.title}
+                </a>
               </h3>
               <p className="mb-3 line-clamp-3">{project.fields.post}</p>
               <button

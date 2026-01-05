@@ -86,8 +86,10 @@ function App() {
         <div className="flex flex-col lg:w-3/4 lg:max-w-2xl relative z-10">
           {filteredPosts.map((post) => (
             <div key={post.fields.id} className="card bg-base-100 shadow-xl p-6 mb-6">
-              <h3 className="text-gray-500 text-xl font-bold mb-3">
-                {post.fields.title}
+              <h3 className="mb-3">
+                <a href={`/post?id=${post.sys.id}`} className="text-gray-500 text-xl font-bold">
+                  {post.fields.title}
+                </a>
               </h3>
               <p className="mb-3 line-clamp-3 mb-3">{post.fields.post}</p>
               <button

@@ -34,17 +34,24 @@ const MouseTrail = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
 
-      // Add new circle
-      circlesRef.current.push({
-        x: e.clientX,
-        y: e.clientY,
-        alpha: 0.5,
-        scale: 1,
-      });
+      // Check if mouse is over a cloud (SVG element)
+      const target = e.target as HTMLElement;
+      const isOverCloud = target.closest('svg');
 
-      // Limit the number of circles
-      if (circlesRef.current.length > 15) {
-        circlesRef.current.shift();
+      // Only add circles if not over a cloud
+      if (!isOverCloud) {
+        // Add new circle
+        circlesRef.current.push({
+          x: e.clientX,
+          y: e.clientY,
+          alpha: 0.5,
+          scale: 1,
+        });
+
+        // Limit the number of circles
+        if (circlesRef.current.length > 15) {
+          circlesRef.current.shift();
+        }
       }
     };
 
