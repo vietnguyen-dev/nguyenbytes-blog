@@ -28,14 +28,19 @@ const About = () => {
 
           <div className="mt-8 relative">
             <Cloud variant={2} className="absolute -top-12 left-12 lg:left-16 w-48 h-24 text-base-content opacity-5 z-0" />
-            <a
-              href=""
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary relative z-10"
-            >
-              View My Resume
-            </a>
+            <div className="flex gap-4 relative z-10">
+              <a href="/contact" className="btn btn-primary">
+                CONTACT ME
+              </a>
+              <a
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                VIEW MY RESUME
+              </a>
+            </div>
           </div>
           </div>
         </main>

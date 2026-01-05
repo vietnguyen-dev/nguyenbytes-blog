@@ -1,3 +1,6 @@
+import thinkpadImg from "../../img/thinkpad.jpeg";
+import macbookImg from "../../img/macbook-bg-removed.png";
+import { useTheme } from "./ThemeProvider";
 import Cloud from "./Cloud";
 
 interface ContactFormProps {
@@ -5,6 +8,10 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
+  const { theme } = useTheme();
+  const isDark = theme === "black";
+  const laptopImg = isDark ? macbookImg : thinkpadImg;
+
   return (
     <div className="mt-10 relative">
       {showHeading && (
@@ -16,7 +23,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
           </h2>
         </div>
       )}
-      <div className="flex flex-col lg:flex-row lg:gap-8 relative z-10">
+      <div className="flex flex-col relative z-10">
         <div className="flex flex-col gap-3 ml-3">
           <div>
             <p className="font-semibold text-sm opacity-70">Email</p>
@@ -42,14 +49,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
             </a>
           </div>
         </div>
-        {/* <div className="mt-6 lg:-mt-32">
+        <div className="mt-6">
           <img
             src={laptopImg}
             alt={isDark ? "Macbook laptop" : "Thinkpad laptop"}
             className="rounded-lg"
             style={{ width: "500px", height: "500px", objectFit: "cover" }}
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );

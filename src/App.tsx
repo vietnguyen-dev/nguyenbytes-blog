@@ -93,7 +93,7 @@ function App() {
               </h3>
               <p className="mb-3 line-clamp-3 mb-3">{post.fields.post}</p>
               <button
-                className="btn btn-primary ml-auto"
+                className="btn btn-primary mx-auto lg:ml-auto lg:mr-0"
                 onClick={() => goToPost(post.sys.id)}
               >
                 READ MORE

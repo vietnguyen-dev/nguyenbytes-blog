@@ -132,14 +132,14 @@ const Page: React.FC<iPageProps> = ({ children }) => {
             </a>
           </div>
           <nav className="flex flex-col gap-3 items-end lg:flex-row lg:gap-4 lg:items-center">
-            <a href="https://www.linkedin.com/in/vietnguyen-dev/">
+            <a href="https://www.linkedin.com/in/vietnguyen-dev/" className="footer-icon">
               <img
                 src={linkedinLOGO}
                 alt="linkedin logo"
                 className="w-10 ml-auto lg:w-8"
               />
             </a>
-            <a href="https://github.com/vietnguyen-dev">
+            <a href="https://github.com/vietnguyen-dev" className="footer-icon">
               <img src={githubLogo} alt="github logo" className="w-10 ml-auto lg:w-8" />
             </a>
           </nav>

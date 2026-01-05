@@ -4,12 +4,12 @@
 
 @layer base {
   @media (min-width: 1024px) {
-    a:not(.btn) {
+    a:not(.btn):not(.footer-icon) {
       position: relative;
       display: inline-block;
     }
 
-    a:not(.btn)::after {
+    a:not(.btn):not(.footer-icon)::after {
       content: '';
       position: absolute;
       width: 100%;
@@ -22,7 +22,7 @@
       transition: transform 0.3s ease-in-out;
     }
 
-    a:not(.btn):hover::after {
+    a:not(.btn):not(.footer-icon):hover::after {
       transform: scaleX(1);
     }
 
@@ -32,6 +32,14 @@
 
     .btn:hover {
       transform: scale(1.05);
+    }
+
+    .footer-icon {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .footer-icon:hover {
+      transform: scale(1.15);
     }
   }
 }

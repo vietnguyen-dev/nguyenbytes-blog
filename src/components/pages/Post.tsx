@@ -33,9 +33,16 @@ const Post = () => {
       <main className="lg:w-3/5 lg:mx-auto lg:px-8">
         {post ? (
           <div>
-            <h1 className="text-3xl font-bold mt-6 mb-3">
+            <h1 className="text-3xl font-bold mt-6 mb-2">
               {post.fields.title}
             </h1>
+            <p className="text-sm text-gray-500 mb-4">
+              {new Date(post.sys.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
             <p className="whitespace-pre-line">{post.fields.post}</p>
           </div>
         ) : (
