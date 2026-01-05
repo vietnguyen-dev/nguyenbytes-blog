@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-type Theme = "winter" | "black";
+type Theme = "light" | "black";
 
 interface ThemeContextType {
   theme: Theme;
@@ -23,7 +23,7 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    return (localStorage.getItem("theme") as Theme) || "winter";
+    return (localStorage.getItem("theme") as Theme) || "light";
   });
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "winter" ? "black" : "winter"));
+    setTheme((prevTheme) => (prevTheme === "light" ? "black" : "light"));
   };
 
   return (
