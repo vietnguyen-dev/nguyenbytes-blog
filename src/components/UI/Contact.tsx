@@ -1,6 +1,7 @@
 import thinkpadImg from "../../img/thinkpad.jpeg";
 import macbookImg from "../../img/macbook-bg-removed.png";
 import { useTheme } from "./ThemeProvider";
+import Cloud from "./Cloud";
 
 interface ContactFormProps {
   showHeading?: boolean;
@@ -11,18 +12,22 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
   const isDark = theme === "black";
   const laptopImg = isDark ? macbookImg : thinkpadImg;
   return (
-    <div className="mt-10">
+    <div className="mt-10 relative">
       {showHeading && (
-        <h2 className="font-bold mb-4 text-gray-400 font-medium tracking-widest px-2">
-          CONTACT
-        </h2>
+        <div className="relative mb-4">
+          {/* Decorative cloud for Contact component */}
+          <Cloud variant={3} className="absolute -top-6 -left-2 w-48 h-24 text-base-content opacity-5 z-0" />
+          <h2 className="font-bold text-gray-400 font-medium tracking-widest px-2 relative z-10">
+            CONTACT
+          </h2>
+        </div>
       )}
-      <div className="flex flex-col lg:flex-row lg:gap-8">
+      <div className="flex flex-col lg:flex-row lg:gap-8 relative z-10">
         <div className="flex flex-col gap-3 ml-3">
           <div>
             <p className="font-semibold text-sm opacity-70">Email</p>
-            <a href="mailto:viet@nguyenbytes.com" className="text-lg">
-              viet@nguyenbytes.com
+            <a href="mailto:vietnguyent22@gmail.com" className="text-lg">
+              vietnguyent22@gmail.com
             </a>
           </div>
           <div>
@@ -43,14 +48,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
             </a>
           </div>
         </div>
-        <div className="mt-6 lg:-mt-32">
+        {/* <div className="mt-6 lg:-mt-32">
           <img
             src={laptopImg}
             alt={isDark ? "Macbook laptop" : "Thinkpad laptop"}
             className="rounded-lg"
             style={{ width: "500px", height: "500px", objectFit: "cover" }}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

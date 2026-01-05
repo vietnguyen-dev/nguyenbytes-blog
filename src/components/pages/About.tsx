@@ -1,12 +1,14 @@
 import Page from "../UI/Page";
 import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";
+import Cloud from "../UI/Cloud";
 
 const About = () => {
   return (
     <Page>
-      <div className="lg:w-3/5 lg:mx-auto lg:px-8">
-        <h2 className="text-center font-bold text-xl my-8 text-gray-500 md:text-left">
+      <div className="lg:w-3/5 lg:mx-auto lg:px-8 relative">
+        <Cloud variant={1} className="absolute -top-4 -left-8 lg:left-0 w-48 h-24 text-base-content opacity-5 z-0" />
+        <h2 className="text-center font-bold text-xl my-8 text-gray-500 md:text-left relative z-10">
           ABOUT ME
         </h2>
         <main className="mb-8">
@@ -24,12 +26,13 @@ const About = () => {
             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
           </p>
 
-          <div className="mt-8">
+          <div className="mt-8 relative">
+            <Cloud variant={2} className="absolute -top-12 left-12 lg:left-16 w-48 h-24 text-base-content opacity-5 z-0" />
             <a
               href=""
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary"
+              className="btn btn-primary relative z-10"
             >
               View My Resume
             </a>

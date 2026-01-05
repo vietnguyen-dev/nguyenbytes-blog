@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import Page from "../UI/Page";
 import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";
+import Cloud from "../UI/Cloud";
 import iContentfulResponse from "../../interfaces/iContentfulRes";
 
 const CDN_KEY = import.meta.env.VITE_CDN_API_KEY;
@@ -32,9 +33,12 @@ const Projects = () => {
 
   return (
     <Page>
-      <h2 className="text-center font-bold text-xl my-8 text-gray-500 md:text-left">
-        PROJECTS
-      </h2>
+      <div className="relative">
+        <Cloud variant={1} className="absolute -top-4 left-1/4 -translate-x-1/2 md:left-0 md:translate-x-0 w-48 h-24 text-base-content opacity-5 z-0" />
+        <h2 className="text-center font-bold text-xl my-8 text-gray-500 md:text-left relative z-10">
+          PROJECTS
+        </h2>
+      </div>
       <main className="grid place-items-center grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {projects ? (
           projects.items.map((project) => (

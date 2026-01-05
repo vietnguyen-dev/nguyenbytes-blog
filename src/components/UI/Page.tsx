@@ -4,6 +4,7 @@ import linkedinLOGO from "../../img/linkedin-app-white-icon.svg";
 import ThemeToggle from "./ThemeToggle";
 import { ThemeProvider } from "./ThemeProvider";
 import Cloud from "./Cloud";
+import MouseTrail from "./MouseTrail";
 
 interface iPageProps {
   children: React.ReactNode;
@@ -26,14 +27,15 @@ const Page: React.FC<iPageProps> = ({ children }) => {
 
   return (
     <ThemeProvider>
+      <MouseTrail />
       <div
         className={`navbar z-50 sticky top-0 ${scrollY > 50 && `bg-base-100 bg-opacity-75 shadow-xl`}`}
       >
         {/* Clouds behind navbar - only visible when not scrolled */}
         {scrollY <= 50 && (
           <>
-            <Cloud variant={1} className="absolute -top-8 -left-12 lg:left-[22%] w-64 h-32 text-base-content opacity-5 pointer-events-none z-0" />
-            <Cloud variant={3} className="absolute -top-6 -right-8 lg:right-[15%] w-56 h-28 text-base-content opacity-5 pointer-events-none z-0" />
+            <Cloud variant={1} className="absolute -top-8 -left-12 lg:left-[22%] w-64 h-32 text-base-content opacity-5 z-0" />
+            <Cloud variant={3} className="absolute -top-6 -right-8 lg:right-[15%] w-56 h-28 text-base-content opacity-5 z-0" />
           </>
         )}
         <div className="w-full mx-auto px-6 lg:max-w-[66.666%] lg:px-16 flex relative z-10">
@@ -114,7 +116,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
       </div>
       <div className="mx-6 mt-6 mb-12 px-4 lg:max-w-[66.666%] lg:mx-auto lg:px-16">{children}</div>
       <footer className="footer bg-neutral text-neutral-content p-4">
-        <div className="w-full mx-auto lg:max-w-[66.666%] lg:px-16 flex justify-between content-center">
+        <div className="w-full mx-auto px-6 lg:max-w-[66.666%] lg:px-16 flex justify-between content-center">
           <div className="flex flex-col md:flex-row">
             <a href="/" className="mr-3">
               Blog

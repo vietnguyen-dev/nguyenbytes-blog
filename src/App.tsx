@@ -51,7 +51,7 @@ function App() {
     <Page>
       <section className="my-12 py-8 relative">
         {/* Cloud behind Hello, Welcome to my Developer Blog! */}
-        <Cloud variant={2} className="absolute -top-12 left-[2%] lg:left-[27%] w-96 h-48 text-base-content opacity-5 pointer-events-none z-0" />
+        <Cloud variant={2} className="absolute -top-12 left-[2%] lg:left-[27%] w-96 h-48 text-base-content opacity-5 z-0" />
         <h1 className="text-2xl font-bold text-center mb-3 relative z-10">
           Hello, I'm Viet Nguyen.<br />Welcome to my Developer Blog!
         </h1>
@@ -73,23 +73,16 @@ function App() {
           </a>
         </div>
         {/* Decorative cloud on right */}
-        <Cloud variant={3} className="absolute -top-4 right-[2%] lg:right-[12%] w-56 h-28 text-base-content opacity-5 pointer-events-none z-0" />
+        <Cloud variant={3} className="hidden lg:block absolute -top-4 right-[2%] lg:right-[12%] w-56 h-28 text-base-content opacity-5 z-0" />
       </section>
       <div className="relative">
-        <Cloud variant={4} className="absolute -top-16 -left-12 lg:left-[12%] w-60 h-30 text-base-content opacity-5 pointer-events-none z-0" />
+        <Cloud variant={4} className="absolute -top-16 -left-12 lg:left-[12%] w-60 h-30 text-base-content opacity-5 z-0" />
         <Search onSearch={setSearchTerm} />
       </div>
       <h2 className="text-2xl font-bold text-gray-500 tracking-widest mb-6">
         ARTICLES
       </h2>
       <main className="flex flex-col lg:flex-row lg:gap-8 relative">
-        {/* Clouds scattered throughout main content */}
-        <Cloud variant={4} className="absolute top-6 left-[5%] lg:left-[17%] w-72 h-36 text-base-content opacity-5 pointer-events-none z-0" />
-        <Cloud variant={1} className="absolute top-56 right-[7%] lg:right-[5%] w-64 h-32 text-base-content opacity-5 pointer-events-none z-0" />
-        <Cloud variant={2} className="absolute top-[380px] left-[12%] lg:left-[32%] w-80 h-40 text-base-content opacity-5 pointer-events-none z-0" />
-        <Cloud variant={3} className="absolute top-[480px] right-[5%] lg:right-[17%] w-60 h-30 text-base-content opacity-5 pointer-events-none z-0" />
-        <Cloud variant={4} className="absolute bottom-36 left-[17%] lg:left-[25%] w-72 h-36 text-base-content opacity-5 pointer-events-none z-0" />
-        <Cloud variant={1} className="absolute bottom-14 right-[9%] lg:right-[27%] w-56 h-28 text-base-content opacity-5 pointer-events-none z-0" />
         <div className="flex flex-col lg:w-3/4 lg:max-w-2xl relative z-10">
           {filteredPosts.map((post) => (
             <div key={post.fields.id} className="card bg-base-100 shadow-xl p-6 mb-6">
