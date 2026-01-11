@@ -51,15 +51,20 @@ function App() {
     <Page>
       <section className="my-12 py-8 relative">
         {/* Cloud behind Hello, Welcome to my Developer Blog! */}
-        <Cloud variant={2} className="absolute -top-12 left-[2%] lg:left-[27%] w-96 h-48 text-base-content opacity-5 z-0" />
-        <h1 className="text-2xl font-bold text-center mb-3 relative z-10">
-          Hello, I'm Viet Nguyen.<br />Welcome to my Developer Blog!
+        <Cloud
+          variant={2}
+          className="absolute -top-12 left-[2%] lg:left-[27%] w-96 h-48 text-base-content opacity-5 z-0"
+        />
+        <h1 className="text-2xl font-bold text-center mb-3 relative z-10 animate-slide-in-fade">
+          Hello, I'm Viet Nguyen.
+          <br />
+          Welcome to my Developer Blog!
         </h1>
-        <p className="text-center relative z-10">
+        <h2 className="text-center relative z-10 animate-slide-in-right">
           I talk about what I am working on currently and trends in software
           development!
-        </p>
-        <div className="flex gap-4 justify-center mt-6 relative z-10">
+        </h2>
+        <div className="flex gap-4 justify-center mt-6 relative z-10 animate-slide-in-bottom">
           <a href="/contact" className="btn btn-primary">
             CONTACT ME
           </a>
@@ -73,10 +78,16 @@ function App() {
           </a>
         </div>
         {/* Decorative cloud on right */}
-        <Cloud variant={3} className="hidden lg:block absolute -top-4 right-[2%] lg:right-[12%] w-56 h-28 text-base-content opacity-5 z-0" />
+        <Cloud
+          variant={3}
+          className="hidden lg:block absolute -top-4 right-[2%] lg:right-[12%] w-56 h-28 text-base-content opacity-5 z-0"
+        />
       </section>
       <div className="relative">
-        <Cloud variant={4} className="absolute -top-16 -left-12 lg:left-[12%] w-60 h-30 text-base-content opacity-5 z-0" />
+        <Cloud
+          variant={4}
+          className="absolute -top-16 -left-12 lg:left-[12%] w-60 h-30 text-base-content opacity-5 z-0"
+        />
         <Search onSearch={setSearchTerm} />
       </div>
       <h2 className="text-2xl font-bold text-gray-500 tracking-widest mb-6">
@@ -85,9 +96,15 @@ function App() {
       <main className="flex flex-col lg:flex-row lg:gap-8 relative">
         <div className="flex flex-col lg:w-3/4 lg:max-w-2xl relative z-10">
           {filteredPosts.map((post) => (
-            <div key={post.fields.id} className="card bg-base-100 shadow-xl p-6 mb-6">
+            <div
+              key={post.fields.id}
+              className="card bg-base-100 shadow-xl p-6 mb-6"
+            >
               <h3 className="mb-3">
-                <a href={`/post?id=${post.sys.id}`} className="text-gray-500 text-xl font-bold">
+                <a
+                  href={`/post?id=${post.sys.id}`}
+                  className="text-gray-500 text-xl font-bold"
+                >
                   {post.fields.title}
                 </a>
               </h3>

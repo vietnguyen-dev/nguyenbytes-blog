@@ -4,7 +4,6 @@ import linkedinLOGO from "../../img/linkedin-app-white-icon.svg";
 import ThemeToggle from "./ThemeToggle";
 import { ThemeProvider } from "./ThemeProvider";
 import Cloud from "./Cloud";
-import MouseTrail from "./MouseTrail";
 
 interface iPageProps {
   children: React.ReactNode;
@@ -27,7 +26,6 @@ const Page: React.FC<iPageProps> = ({ children }) => {
 
   return (
     <ThemeProvider>
-      <MouseTrail />
       <div
         className={`navbar z-50 sticky top-0 ${scrollY > 50 && `bg-base-100 bg-opacity-75 shadow-xl`}`}
       >
