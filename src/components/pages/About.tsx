@@ -1,5 +1,3 @@
-"use client";
-
 import Page from "../UI/Page";
 import Popular from "../UI/Popular";
 import ContactForm from "../UI/Contact";

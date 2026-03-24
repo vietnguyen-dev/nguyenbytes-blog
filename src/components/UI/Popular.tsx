@@ -1,11 +1,8 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import iContentfulResponse from "../../interfaces/iContentfulRes";
 import Cloud from "./Cloud";
-
-const CDN_KEY = process.env.NEXT_PUBLIC_CDN_API_KEY;
-const SPACE_ID = process.env.NEXT_PUBLIC_SPACE_ID;
+const CDN_KEY = import.meta.env.VITE_CDN_API_KEY;
+const SPACE_ID = import.meta.env.VITE_SPACE_ID;
 
 const Popular = () => {
   const [posts, setPosts] = useState<iContentfulResponse | null>(null);

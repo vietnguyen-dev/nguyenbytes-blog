@@ -1,13 +1,9 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import githubLogo from "../../img/github-mark-white.svg";
+import linkedinLOGO from "../../img/linkedin-app-white-icon.svg";
 import ThemeToggle from "./ThemeToggle";
 import { ThemeProvider } from "./ThemeProvider";
 import Cloud from "./Cloud";
-
-const githubLogo = "/img/github-mark-white.svg";
-const linkedinLOGO = "/img/linkedin-app-white-icon.svg";
 
 interface iPageProps {
   children: React.ReactNode;
@@ -43,7 +39,7 @@ const Page: React.FC<iPageProps> = ({ children }) => {
         <div className="w-full mx-auto px-6 lg:max-w-[66.666%] lg:px-16 flex relative z-10">
           <div className="flex-1">
             <h3 className="font-bold text-2xl">
-              <Link href="/">Nguyen Bytes</Link>
+              <a href="/">Nguyen Bytes</a>
             </h3>
           </div>
           <div className="flex-none md:hidden">
@@ -80,10 +76,18 @@ const Page: React.FC<iPageProps> = ({ children }) => {
                   </button>
                 </form>
                 <div className="flex flex-col text-right [&>*]:mt-3">
-                  <Link href="/" className="mr-3">Blog</Link>
-                  <Link href="/projects" className="mr-3">Projects</Link>
-                  <Link href="/about" className="mr-3">About</Link>
-                  <Link href="/contact" className="mr-3">Contact</Link>
+                  <a href="/" className="mr-3">
+                    Blog
+                  </a>
+                  <a href="/projects" className="mr-3">
+                    Projects
+                  </a>
+                  <a href="/about" className="mr-3">
+                    About
+                  </a>
+                  <a href="/contact" className="mr-3">
+                    Contact
+                  </a>
                 </div>
               </div>
               <form method="dialog" className="modal-backdrop">
@@ -92,10 +96,18 @@ const Page: React.FC<iPageProps> = ({ children }) => {
             </dialog>
           </div>
           <nav className="hidden z-99 md:block">
-            <Link href="/" className="mr-3">Blog</Link>
-            <Link href="/projects" className="mr-3">Projects</Link>
-            <Link href="/about" className="mr-3">About</Link>
-            <Link href="/contact" className="mr-3">Contact</Link>
+            <a href="/" className="mr-3">
+              Blog
+            </a>
+            <a href="/projects" className="mr-3">
+              Projects
+            </a>
+            <a href="/about" className="mr-3">
+              About
+            </a>
+            <a href="/contact" className="mr-3">
+              Contact
+            </a>
           </nav>
           <ThemeToggle />
         </div>
@@ -104,10 +116,18 @@ const Page: React.FC<iPageProps> = ({ children }) => {
       <footer className="footer bg-neutral text-neutral-content p-4">
         <div className="w-full mx-auto px-6 lg:max-w-[66.666%] lg:px-16 flex justify-between content-center">
           <div className="flex flex-col md:flex-row">
-            <Link href="/" className="mr-3">Blog</Link>
-            <Link href="/projects" className="mr-3">Projects</Link>
-            <Link href="/about" className="mr-3">About</Link>
-            <Link href="/contact" className="mr-3">Contact</Link>
+            <a href="/" className="mr-3">
+              Blog
+            </a>
+            <a href="/projects" className="mr-3">
+              Projects
+            </a>
+            <a href="/about" className="mr-3">
+              About
+            </a>
+            <a href="/contact" className="mr-3">
+              Contact
+            </a>
           </div>
           <nav className="flex flex-col gap-3 items-end lg:flex-row lg:gap-4 lg:items-center">
             <a href="https://www.linkedin.com/in/vietnguyen-dev/" className="footer-icon">
