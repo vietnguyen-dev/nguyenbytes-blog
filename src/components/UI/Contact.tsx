@@ -1,7 +1,10 @@
-import thinkpadImg from "../../img/thinkpad.jpeg";
-import macbookImg from "../../img/macbook-bg-removed.png";
+"use client";
+
 import { useTheme } from "./ThemeProvider";
 import Cloud from "./Cloud";
+
+const thinkpadImg = "/img/thinkpad.jpeg";
+const macbookImg = "/img/macbook-bg-removed.png";
 
 interface ContactFormProps {
   showHeading?: boolean;

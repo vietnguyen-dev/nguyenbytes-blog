@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Theme = "light" | "black";
@@ -23,6 +25,7 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "light";
     return (localStorage.getItem("theme") as Theme) || "light";
   });
 
