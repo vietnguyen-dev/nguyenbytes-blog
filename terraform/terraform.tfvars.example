@@ -1,0 +1,14 @@
+aws_region           = "us-west-2"
+project_name         = "nguyenbytes-portfolio"
+portfolio_bucket_name = "your-unique-portfolio-bucket-name"
+lambda_function_name = "portfolio-email"
+ses_from_email       = "you@example.com"
+notification_email   = "you@example.com"
+
+allowed_origins = [
+  "*",
+]
+
+tags = {
+  Environment = "dev"
+}
