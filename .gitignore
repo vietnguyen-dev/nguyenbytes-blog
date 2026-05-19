@@ -54,3 +54,5 @@ Desktop.ini
 **/*.zip
 iam-role.json
 **/iam-role.json
+iam-policy.json
+**/iam-policy.json
