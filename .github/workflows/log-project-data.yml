@@ -1,0 +1,54 @@
+name: Log Project Data
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  log-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Verify AWS identity
+        run: aws sts get-caller-identity
+
+      - name: Log GitHub context
+        run: |
+          echo "event_name=${{ github.event_name }}"
+          echo "ref=${{ github.ref }}"
+          echo "sha=${{ github.sha }}"
+          echo "actor=${{ github.actor }}"
+          echo "repository=${{ github.repository }}"
+
+      - name: Log project directories
+        run: |
+          echo "Repository root contents:"
+          ls -la
+          echo
+          echo "Terraform directory contents:"
+          ls -la terraform
+          echo
+          echo "Portfolio directory contents:"
+          ls -la threejs-porfolio
+          echo
+          echo "Email lambda directory contents:"
+          ls -la email-lambda
+
+      - name: Log Terraform files
+        run: |
+          echo "Terraform files:"
+          find terraform -maxdepth 1 -type f | sort
