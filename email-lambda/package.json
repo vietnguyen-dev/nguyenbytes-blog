@@ -1,0 +1,16 @@
+{
+  "name": "email-lambda",
+  "version": "1.0.0",
+  "description": "a lambda fuction that sends an email using aws ses",
+  "license": "ISC",
+  "author": "Viet Nguyen",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "zip": "zip -r lambda.zip ./* .env -x 'lambda.zip'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.1038.0"
+  }
+}

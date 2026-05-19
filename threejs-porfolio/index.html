@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viet Nguyen | Software Engineer</title>
+    <meta
+      name="description"
+      content="Viet Nguyen is a software engineer building clean, reliable web products with a focus on performance, product quality, and modern user experiences."
+    />
+    <meta name="theme-color" content="#071116" />
+    <meta property="og:title" content="Viet Nguyen | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer portfolio for Viet Nguyen, focused on full-stack development, web products, and polished user experiences."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Viet Nguyen | Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer portfolio for Viet Nguyen, focused on full-stack development, web products, and polished user experiences."
+    />
+    <link rel="icon" type="image/png" href="./programming.png" />
+    <link rel="apple-touch-icon" href="./programming.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.178.0/build/three.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body data-theme="dark">
+    <canvas class="webgl" aria-hidden="true"></canvas>
+
+    <div class="page-shell">
+      <div class="nav-shell">
+        <a href="./index.html" class="nav-brand" aria-label="Viet Nguyen home">
+          nguyenbytes
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open navigation"
+        >
+          <span class="nav-toggle-label">Menu</span>
+          <span class="nav-toggle-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav id="site-nav" class="top-nav">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="./contact.html">Contact</a>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle light and dark mode"
+        >
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb"></span>
+            <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true"
+              >☀</span
+            >
+            <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true"
+              >☾</span
+            >
+          </span>
+        </button>
+      </div>
+
+      <header id="about" class="hero scene-section" data-scene="hero">
+        <div class="eyebrow eyebrow-row">
+          <p>Viet Nguyen • Software Engineer</p>
+          <div class="eyebrow-links">
+            <a
+              href="https://github.com/vietnguyen-dev"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 2C6.48 2 2 6.59 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.21-3.37-1.21-.45-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.09 0-1.13.39-2.05 1.03-2.78-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.06A9.3 9.3 0 0 1 12 6.84a9.3 9.3 0 0 1 2.5.35c1.9-1.33 2.74-1.06 2.74-1.06.56 1.42.21 2.47.11 2.73.64.73 1.03 1.65 1.03 2.78 0 3.96-2.35 4.83-4.58 5.08.36.32.68.95.68 1.92 0 1.38-.01 2.5-.01 2.84 0 .28.18.61.69.5A10.27 10.27 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vietnguyen-dev/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M6.94 8.5A1.56 1.56 0 1 1 6.93 5.4a1.56 1.56 0 0 1 .01 3.1ZM5.62 18.5h2.63V9.83H5.62V18.5Zm4.29 0h2.62v-4.84c0-1.28.24-2.52 1.8-2.52 1.54 0 1.56 1.44 1.56 2.6v4.76h2.63v-5.3c0-2.6-.56-4.6-3.6-4.6-1.47 0-2.45.82-2.85 1.6h-.04V9.83H9.91c.03.79 0 8.67 0 8.67Z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <h1>
+          Building clean software
+          <span>for the web.</span>
+        </h1>
+        <p class="intro">
+          Full-stack engineering with a focus on product, performance, and
+          clarity.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="button button-primary">View Projects</a>
+          <a
+            href="./contact.html"
+            class="button button-secondary button-contact"
+            >Contact Me</a
+          >
+        </div>
+      </header>
+
+      <main>
+        <section class="panel stats-panel scene-section" data-scene="focus">
+          <div>
+            <p class="panel-label">What I Do</p>
+            <h2>Software with strong foundations.</h2>
+          </div>
+          <div class="stats-grid">
+            <article>
+              <span>Frontend</span>
+              <p>
+                Fast, usable interfaces built with React, TypeScript,
+                TailwindCSS.
+              </p>
+            </article>
+            <article>
+              <span>Backend</span>
+              <p>
+                Building robust and maintainable backend logic using Node,
+                Express, Go, and Python.
+              </p>
+            </article>
+            <article>
+              <span>Cloud Services</span>
+              <p>
+                Deploying and maintaining cloud services using AWS and
+                DigitalOcean for reliable, scalable production environments.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section
+          id="experience"
+          class="panel experience-panel scene-section"
+          data-scene="focus"
+        >
+          <div class="section-heading">
+            <p class="panel-label">Experience</p>
+            <h2>Recent experience</h2>
+          </div>
+
+          <div class="experience-list">
+            <article class="experience-item">
+              <div>
+                <p class="project-index">Feb 2026 – Current</p>
+                <h3>Web Developer · Pho Gia Milwaukie (Contract)</h3>
+              </div>
+              <p>
+                Led a full migration from Create React App and Firebase to
+                Next.js and Vercel, improving performance, maintainability, and
+                deployment workflows. Implemented secure production deployment
+                practices and collaborated directly with stakeholders to align
+                technical decisions with business goals.
+              </p>
+            </article>
+
+            <article class="experience-item">
+              <div>
+                <p class="project-index">Dec 2021 – Jul 2022</p>
+                <h3>Software Engineer · Append</h3>
+              </div>
+              <p>
+                Milwaukie, Oregon. Reduced supply chain costs by $200k through
+                legacy app support, built multi-table data sources that cut
+                application processing time by 10%, improved internal workflows
+                by 30%, reduced bug-fix time by 20%, and documented legacy
+                systems to increase development speed by 15%.
+              </p>
+            </article>
+
+            <article class="experience-item">
+              <div>
+                <p class="project-index">Focus</p>
+                <h3>Full-Stack Engineering</h3>
+              </div>
+              <p>
+                Shipping polished products end to end, from interface work to
+                backend implementation.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section
+          id="projects"
+          class="projects scene-section"
+          data-scene="projects"
+        >
+          <div class="section-heading">
+            <p class="panel-label">Projects</p>
+            <h2>Selected work</h2>
+          </div>
+
+          <div class="project-grid">
+            <article class="panel project-card">
+              <p class="project-index">01</p>
+              <h3>
+                <a
+                  href="https://gridsketching.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Grid Sketching</a
+                >
+              </h3>
+              <p>
+                Interactive drawing and sketching experience built for the web.
+              </p>
+            </article>
+
+            <article class="panel project-card">
+              <p class="project-index">02</p>
+              <h3>
+                <a
+                  href="https://github.com/vietnguyen-dev/lead-gen-content"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Lead Generation Content</a
+                >
+              </h3>
+              <p>
+                Content generation tooling and workflow work for lead generation
+                use cases.
+              </p>
+            </article>
+
+            <article class="panel project-card">
+              <p class="project-index">03</p>
+              <h3>
+                <a
+                  href="https://phogiamilwaukie.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Pho Gia Milwaukie</a
+                >
+              </h3>
+              <p>
+                Restaurant website build focused on a clear menu, location
+                details, and a polished customer-facing experience.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel closing-panel scene-section" data-scene="contact">
+          <p class="panel-label">Next Step</p>
+          <h2>Available for product and engineering work.</h2>
+          <p>Open to roles, freelance builds, and technical collaboration.</p>
+          <a href="./contact.html" class="button button-primary">Contact Me</a>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
