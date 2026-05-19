@@ -14,6 +14,8 @@ const emailInput = document.querySelector('input[name="email"]');
 const emailError = document.querySelector("#email-error");
 const formStatus = document.querySelector(".form-status");
 const submitButton = contactForm?.querySelector('button[type="submit"]');
+const contactApiUrl =
+  window.__APP_CONFIG__?.contactApiUrl || contactForm?.dataset.apiUrl || "";
 
 const scene = new THREE.Scene();
 scene.fog = new THREE.Fog(0x071116, 8, 22);
@@ -680,7 +682,7 @@ if (contactForm) {
       return;
     }
 
-    const apiUrl = contactForm.dataset.apiUrl;
+    const apiUrl = contactApiUrl;
     if (!apiUrl) {
       setFormStatus("error", "Form configuration is missing. Please try again later.");
       return;

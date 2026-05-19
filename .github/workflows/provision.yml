@@ -1,0 +1,69 @@
+name: Provision
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  provision:
+    runs-on: ubuntu-latest
+    env:
+      TF_IN_AUTOMATION: "true"
+      TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+      TF_VAR_domain_name: nguyenbytes.com
+      TF_VAR_ses_from_email: ${{ vars.TF_SES_FROM_EMAIL }}
+      TF_VAR_notification_email: ${{ vars.TF_NOTIFICATION_EMAIL }}
+      TF_VAR_ses_identity_arn: ${{ vars.TF_SES_IDENTITY_ARN }}
+      TF_VAR_ssm_parameter_prefix: /nguyenbytes-blog
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Lambda dependencies
+        working-directory: email-lambda
+        run: npm ci
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Terraform fmt
+        working-directory: terraform
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init
+        working-directory: terraform
+        run: |
+          terraform init \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET_NAME }}" \
+            -backend-config="key=nguyenbytes-blog/terraform.tfstate" \
+            -backend-config="region=${{ secrets.AWS_REGION }}" \
+            -backend-config="encrypt=true"
+
+      - name: Terraform validate
+        working-directory: terraform
+        run: terraform validate
+
+      - name: Terraform plan
+        working-directory: terraform
+        run: terraform plan -out=tfplan
+
+      - name: Terraform apply
+        working-directory: terraform
+        run: terraform apply -auto-approve tfplan

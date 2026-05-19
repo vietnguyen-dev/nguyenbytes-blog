@@ -10,7 +10,9 @@ The contact form posts JSON to an AWS HTTP API. That API invokes a Node.js Lambd
 
 Terraform manages the AWS resources for:
 
-- an S3 bucket configured for static website hosting
+- a private S3 bucket that serves as the CloudFront origin
+- a CloudFront distribution with ACM and a minimal WAF web ACL
+- Route 53 validation and alias records for `nguyenbytes.com` and `www.nguyenbytes.com`
 - the uploaded portfolio assets from `threejs-porfolio/`
 - the Lambda function from `email-lambda/`
 - IAM permissions for Lambda execution and SES sending
@@ -28,7 +30,7 @@ At a high level, the project combines:
 ```text
 .
 ├── email-lambda/       # Node.js Lambda that sends email with SES
-├── terraform/          # AWS infrastructure for S3, Lambda, IAM, and API Gateway
+├── terraform/          # AWS infrastructure, modules, and backend bootstrap config
 └── threejs-porfolio/   # Static portfolio site
 ```
 
@@ -66,21 +68,25 @@ It expects these environment variables:
 
 Terraform in `terraform/` does the following:
 
-- provisions a public S3 website bucket
+- provisions a private S3 origin bucket
+- provisions a CloudFront distribution for `nguyenbytes.com` and `www.nguyenbytes.com`
+- requests and validates an ACM certificate in `us-east-1` for the root and `www` names
+- attaches a minimal AWS managed WAF rule group to CloudFront
 - uploads the files from `threejs-porfolio/`
 - zips `email-lambda/` and deploys it as a `nodejs20.x` Lambda
 - creates the IAM role and policies needed by the Lambda
 - creates an HTTP API with a `/contact` route
-- outputs the static site URL and API URL
+- outputs the CloudFront and API details
 
 ### CI/CD
 
 This project is structured to work well with GitHub Actions for CI/CD automation. A typical workflow would:
 
-- install Terraform and initialize the `terraform/` directory
+- install Terraform and initialize the `terraform/` directory against an S3 backend
 - run formatting and validation checks
-- package and deploy infrastructure changes with `terraform plan` and `terraform apply`
-- automate deployments for the static site and Lambda as changes are pushed
+- provision infrastructure with Terraform in one job
+- deploy the static site and Lambda code in a second job
+- publish deploy metadata to SSM Parameter Store for the deploy job
 
 ## Local Development
 
@@ -102,6 +108,26 @@ cd email-lambda
 npm install
 ```
 
+## Terraform State Backend
+
+Use a separate S3 bucket for Terraform state. Do not reuse the website bucket.
+
+Bootstrap it once:
+
+```bash
+cd terraform/bootstrap
+terraform init
+terraform apply -var='terraform_state_bucket_name=github-actions-nguyenbytes-blog'
+```
+
+Then create a backend config for the main stack from `terraform/backend.hcl.example`, or let GitHub Actions pass the backend settings during `terraform init`.
+
+The GitHub workflow expects this repository variable:
+
+- `TF_STATE_BUCKET_NAME` set to `github-actions-nguyenbytes-blog`
+
+The main Terraform stack also writes deploy metadata into SSM Parameter Store under `/nguyenbytes-blog/deploy/...`.
+
 ## Deploying With Terraform
 
 1. Create a Terraform variables file from the example:
@@ -114,7 +140,7 @@ cp terraform.tfvars.example terraform.tfvars
 2. Fill in:
 
 - `aws_region`
-- `portfolio_bucket_name`
+- `domain_name`
 - `ses_from_email`
 - `notification_email`
 - optionally `ses_identity_arn`
@@ -130,14 +156,26 @@ terraform apply
 
 4. After apply, Terraform outputs:
 
-- the S3 website URL
+- the CloudFront distribution domain
+- the ACM certificate ARN
 - the API URL for the contact endpoint
+
+## Deploy Script
+
+`deploy.sh` reads deployment metadata from SSM Parameter Store and then:
+
+- updates the contact form API URL in `threejs-porfolio/contact.html`
+- uploads the static site to the private S3 origin bucket
+- updates the Lambda function code
+- invalidates the CloudFront cache
 
 Use the API output as the contact form endpoint in the portfolio.
 
 ## Notes
 
-- The S3 bucket name must be globally unique.
+- The Terraform state bucket name must be globally unique.
+- The site bucket name is fixed to `nguyenbytes-prod-bucket`.
+- CloudFront certificates must be created in `us-east-1`, even when the rest of the stack runs in `us-west-2`.
 - The SES sender must be verified in the AWS account and region you use.
 - If your AWS account is still in the SES sandbox, email delivery restrictions will apply.
 - The directory is currently named `threejs-porfolio/`. If you rename it later to `threejs-portfolio/`, update the Terraform variable defaults or tfvars accordingly.

@@ -9,15 +9,22 @@ variable "project_name" {
   default     = "nguyenbytes-portfolio"
 }
 
-variable "portfolio_bucket_name" {
-  description = "Globally unique S3 bucket name for the portfolio site."
+variable "domain_name" {
+  description = "Root domain name for the CloudFront distribution and Route 53 records."
   type        = string
+  default     = "nguyenbytes.com"
 }
 
 variable "portfolio_source_dir" {
   description = "Path to the static portfolio directory."
   type        = string
   default     = "../threejs-porfolio"
+}
+
+variable "ssm_parameter_prefix" {
+  description = "SSM parameter path prefix used to publish deployment metadata."
+  type        = string
+  default     = "/nguyenbytes-blog"
 }
 
 variable "lambda_source_dir" {
@@ -69,7 +76,10 @@ variable "api_stage_name" {
 variable "allowed_origins" {
   description = "Allowed origins for API Gateway CORS."
   type        = list(string)
-  default     = ["*"]
+  default = [
+    "https://nguyenbytes.com",
+    "https://www.nguyenbytes.com",
+  ]
 }
 
 variable "tags" {

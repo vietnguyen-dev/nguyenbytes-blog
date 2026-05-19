@@ -1,0 +1,74 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - Provision
+    types:
+      - completed
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Lambda dependencies
+        working-directory: email-lambda
+        run: npm ci
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Read deploy metadata from SSM
+        id: deploy_meta
+        env:
+          SSM_PARAMETER_PREFIX: /nguyenbytes-blog
+        run: |
+          echo "site_bucket_name=$(aws ssm get-parameter --name "${SSM_PARAMETER_PREFIX}/deploy/site_bucket_name" --query 'Parameter.Value' --output text)" >> "$GITHUB_OUTPUT"
+          echo "cloudfront_distribution_id=$(aws ssm get-parameter --name "${SSM_PARAMETER_PREFIX}/deploy/cloudfront_distribution_id" --query 'Parameter.Value' --output text)" >> "$GITHUB_OUTPUT"
+          echo "contact_api_url=$(aws ssm get-parameter --name "${SSM_PARAMETER_PREFIX}/deploy/contact_api_url" --query 'Parameter.Value' --output text)" >> "$GITHUB_OUTPUT"
+          echo "lambda_function_name=$(aws ssm get-parameter --name "${SSM_PARAMETER_PREFIX}/deploy/lambda_function_name" --query 'Parameter.Value' --output text)" >> "$GITHUB_OUTPUT"
+
+      - name: Generate frontend config
+        run: |
+          cat <<EOF > threejs-porfolio/config.js
+          window.__APP_CONFIG__ = {
+            contactApiUrl: "${{ steps.deploy_meta.outputs.contact_api_url }}"
+          };
+          EOF
+
+      - name: Package Lambda
+        working-directory: email-lambda
+        run: zip -qr ../email-lambda.zip .
+
+      - name: Update Lambda function code
+        run: |
+          aws lambda update-function-code \
+            --function-name "${{ steps.deploy_meta.outputs.lambda_function_name }}" \
+            --zip-file fileb://email-lambda.zip
+
+      - name: Sync site to S3
+        run: |
+          aws s3 sync threejs-porfolio/ "s3://${{ steps.deploy_meta.outputs.site_bucket_name }}/" --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.deploy_meta.outputs.cloudfront_distribution_id }}" \
+            --paths '/*'
