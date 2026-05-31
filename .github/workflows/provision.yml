@@ -16,9 +16,8 @@ jobs:
       TF_IN_AUTOMATION: "true"
       TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
       TF_VAR_domain_name: nguyenbytes.com
-      TF_VAR_ses_from_email: ${{ vars.TF_SES_FROM_EMAIL }}
-      TF_VAR_notification_email: ${{ vars.TF_NOTIFICATION_EMAIL }}
-      TF_VAR_ses_identity_arn: ${{ vars.TF_SES_IDENTITY_ARN }}
+      TF_VAR_ses_from_email: ${{ secrets.TF_SES_FROM_EMAIL }}
+      TF_VAR_notification_email: ${{ secrets.TF_NOTIFICATION_EMAIL }}
       TF_VAR_ssm_parameter_prefix: /nguyenbytes-blog
 
     steps:
@@ -59,6 +58,14 @@ jobs:
       - name: Terraform validate
         working-directory: terraform
         run: terraform validate
+
+      - name: Set optional Terraform variables
+        env:
+          SES_IDENTITY_ARN: ${{ secrets.TF_SES_IDENTITY_ARN }}
+        run: |
+          if [ -n "$SES_IDENTITY_ARN" ]; then
+            echo "TF_VAR_ses_identity_arn=$SES_IDENTITY_ARN" >> "$GITHUB_ENV"
+          fi
 
       - name: Terraform plan
         working-directory: terraform
